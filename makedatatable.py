@@ -8,13 +8,13 @@ datatable = Table()
 datatable['target'] = Column([],
                              unit=u.dimensionless_unscaled,
                              description='target name',
-                             dtype='S20')
+                             dtype='S30')
 datatable['region'] = Column([],
                              unit=u.dimensionless_unscaled,
                              description='Region probed by target [Stream (MS), Bridge, Leading Arm (LA), LMC '
                                          'Halo, or CHVC]. On/Off refer to directions with/without Magellanic Hi '
                                          '21cm emission',
-                             dtype='S20')
+                             dtype='S30')
 datatable['l'] = Column([],
                         unit='degree',
                         description='Galatcic latitude',
@@ -232,7 +232,7 @@ for line in f.readlines():
     newSiIIISiII, SiIIISiII_lim = checklims(SiIIISiII)
     newSiIVSiII, SiIVSiII_lim = checklims(SiIVSiII)
     newCIVCII, CIVCII_lim = checklims(CIVCII)
-    newOI, OI_lim = checklimes(OI)
+    newOI, OI_lim = checklims(OI)
     mylist = (target, region, float(l), float(b), float(LMS), float(BMS),
               int(PID), int(vmin), int(vmax), int(vms),
               float(newHI), HI_lim,
@@ -243,7 +243,7 @@ for line in f.readlines():
               float(newCIV), CIV_lim, float(CIV_err),
               float(newSiIIISiII), SiIIISiII_lim, float(SiIIISiII_err),
               float(newSiIVSiII), SiIVSiII_lim, float(SiIVSiII_err),
-              float(newCIVCII), CIVCII_lim, float(CIVCII_err)
+              float(newCIVCII), CIVCII_lim, float(CIVCII_err),
               float(newOI), OI_lim, float(OI_err))
     datatable.add_row(mylist)
 
