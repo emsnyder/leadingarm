@@ -160,6 +160,19 @@ datatable['log(CIV/CII)_err'] = Column([],
                                        unit=u.dimensionless_unscaled,
                                        description='error on measurement',
                                        dtype=np.float64)
+datatable['logN(OI)'] = Column([],
+                                unit='cm^-2',
+                                description='column density of OI',
+                                dtype=np.float64)
+datatable['logN(OI)_lim'] = Column([],
+                                    unit=u.dimensionless_unscaled,
+                                    description='quantifies whether quantity is upper limit (1), lower limit '
+                                                '(-1), or neither (0)',
+                                    dtype=np.int)
+datatable['logN(OI)_err'] = Column([],
+                                    unit='cm^-2',
+                                    description='error on measurement',
+                                    dtype=np.float64)
 
 
 def checklims(input_str):
@@ -208,6 +221,8 @@ for line in f.readlines():
     vmax = sline[24]
     vms = sline[25]
     HI = sline[26]
+    OI = sline[27]
+    OI_err = sline[28]
     newHI, HI_lim = checklims(HI)
     newSiII, SiII_lim = checklims(SiII)
     newSiIII, SiIII_lim = checklims(SiIII)
@@ -217,6 +232,7 @@ for line in f.readlines():
     newSiIIISiII, SiIIISiII_lim = checklims(SiIIISiII)
     newSiIVSiII, SiIVSiII_lim = checklims(SiIVSiII)
     newCIVCII, CIVCII_lim = checklims(CIVCII)
+    newOI, OI_lim = checklimes(OI)
     mylist = (target, region, float(l), float(b), float(LMS), float(BMS),
               int(PID), int(vmin), int(vmax), int(vms),
               float(newHI), HI_lim,
@@ -228,7 +244,7 @@ for line in f.readlines():
               float(newSiIIISiII), SiIIISiII_lim, float(SiIIISiII_err),
               float(newSiIVSiII), SiIVSiII_lim, float(SiIVSiII_err),
               float(newCIVCII), CIVCII_lim, float(CIVCII_err)
-              )
+              float(newOI), OI_lim, float(OI_err))
     datatable.add_row(mylist)
 
 # datatable.write('newdatafile.hdf5', path='data', serialize_meta=True, overwrite=True)

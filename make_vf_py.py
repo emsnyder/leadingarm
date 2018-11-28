@@ -2,7 +2,9 @@ import numpy as np
 from astropy.io import fits
 import os
 
-datatable = '/Users/efrazer/leadingarm/datafile1418.fits'
+rootdir = '/Users/efrazer/leadingarm/'
+
+datatable = os.path.join(rootdir, 'datafile1418.fits')
 
 data = fits.getdata(datatable)
 
@@ -26,7 +28,9 @@ for row in data:
     # if os.path.isfile('/Users/efrazer/science/scripts_new/vf_{}.py'.format(row['target'])):
     #     continue
 
-    with open('/Users/efrazer/leadingarm/scripts_new/vf_{}.py'.format(row['target']), 'w') as f:
+    filepath = os.path.join(rootdir, 'sightlines', row['target'])
+
+    with open(os.path.join(filepath, 'vf_{}.py'.format(row['target'])), 'w') as f:
 
         f.write('import numpy as np\n')
         f.write('import VoigtFit\n')
@@ -39,7 +43,7 @@ for row in data:
         f.write('z = 0.0\n')
         f.write('\n')
         f.write('dataset = VoigtFit.DataSet(z)\n')
-        f.write('dataset.set_name("{}")\n'.format(row['target']))
+        f.write('dataset.set_name("{}-SiII")\n'.format(row['target']))
         f.write('dataset.verbose = True\n')
         f.write('\n')
         f.write('\n')
@@ -72,8 +76,8 @@ for row in data:
         
         f.write('# -- Load the COS data (G130M and G160M if available) in ASCII format:\n')
         
-        if os.path.isfile("/Users/efrazer/science/cosdata/{}-G160M".format(row['target'])):
-            G160M_path = "/Users/efrazer/science/cosdata/{}-G160M".format(row['target'])
+        if os.path.isfile(os.path.join(filepath, "{}-G160M".format(row['target']))):
+            G160M_path = os.path.join(filepath, "{}-G160M".format(row['target']))
             f.write('G160M_filename = "{}"\n'.format(G160M_path))
             f.write('\n')
             f.write('res_g160m = 19000.\n')
@@ -87,8 +91,8 @@ for row in data:
             f.write('dataset.add_data(wl_g160m_rb, spec_g160m_rb, '
                     '299792.458/res_g160m, err=err_g160m_rb, normalized=False)\n')
             f.write('\n')
-        elif os.path.isfile("/Users/efrazer/science/cosdata/{}_spec-G160M".format(row['target'])):
-            G160M_path = "/Users/efrazer/science/cosdata/{}_spec-G160M".format(row['target'])
+        elif os.path.isfile(os.path.join(filepath, "{}_spec-G160M".format(row['target']))):
+            G160M_path = os.path.join(filepath, "{}_spec-G160M".format(row['target']))
             f.write('G160M_filename = "{}"\n'.format(G160M_path))
             f.write('\n')
             f.write('res_g160m = 19000.\n')
@@ -105,8 +109,8 @@ for row in data:
         else:
             pass
             
-        if os.path.isfile("/Users/efrazer/science/cosdata/{}-G130M".format(row['target'])):
-            G130M_path = "/Users/efrazer/science/cosdata/{}-G130M".format(row['target'])
+        if os.path.isfile(os.path.join(filepath, "{}-G130M".format(row['target']))):
+            G130M_path = os.path.join(filepath, "{}-G130M".format(row['target']))
             f.write('G130M_filename = "{}"\n'.format(G130M_path))
             f.write('\n')
             f.write('res_g130m = 16000.\n')
@@ -120,8 +124,41 @@ for row in data:
             f.write('dataset.add_data(wl_g130m_rb, spec_g130m_rb, '
                     '299792.458/res_g130m, err=err_g130m_rb, normalized=False)\n')
             f.write('\n')
-        elif os.path.isfile("/Users/efrazer/science/cosdata/{}_spec-G130M".format(row['target'])):
-            G130M_path = "/Users/efrazer/science/cosdata/{}_spec-G130M".format(row['target'])
+        elif os.path.isfile(os.path.join(filepath, "{}_spec-G130M".format(row['target']))):
+            G130M_path = os.path.join(filepath, "{}_spec-G130M".format(row['target']))
+            f.write('G130M_filename = "{}"\n'.format(G130M_path))
+            f.write('\n')
+            f.write('res_g130m = 16000.\n')
+            f.write('\n')
+            f.write('wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)\n')
+            f.write('\n')
+            f.write('wl_g130m_rb = downsample_1d(wl_g130m, 3)\n')
+            f.write('spec_g130m_rb = downsample_1d(spec_g130m, 3)\n')
+            f.write('err_g130m_rb = downsample_1d(err_g130m, 3)\n')
+            f.write('\n')
+            f.write('dataset.add_data(wl_g130m_rb, spec_g130m_rb, '
+                    '299792.458/res_g130m, err=err_g130m_rb, normalized=False)\n')
+            f.write('\n')
+        else:
+            pass
+
+        if os.path.isfile(os.path.join(filepath, "{}-G130M-N".format(row['target']))):
+            G130M_path = os.path.join(filepath, "{}-G130M-N".format(row['target']))
+            f.write('G130M_filename = "{}"\n'.format(G130M_path))
+            f.write('\n')
+            f.write('res_g130m = 16000.\n')
+            f.write('\n')
+            f.write('wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)\n')
+            f.write('\n')
+            f.write('wl_g130m_rb = downsample_1d(wl_g130m, 3)\n')
+            f.write('spec_g130m_rb = downsample_1d(spec_g130m, 3)\n')
+            f.write('err_g130m_rb = downsample_1d(err_g130m, 3)\n')
+            f.write('\n')
+            f.write('dataset.add_data(wl_g130m_rb, spec_g130m_rb, '
+                    '299792.458/res_g130m, err=err_g130m_rb, normalized=False)\n')
+            f.write('\n')
+        elif os.path.isfile(os.path.join(filepath, "{}_spec-G130M-N".format(row['target']))):
+            G130M_path = os.path.join(filepath, "{}_spec-G130M-N".format(row['target']))
             f.write('G130M_filename = "{}"\n'.format(G130M_path))
             f.write('\n')
             f.write('res_g130m = 16000.\n')
@@ -178,6 +215,9 @@ for row in data:
             f.write('dataset.add_line("SiIV_1393")\n')
             f.write('dataset.add_line("SiIV_1402")\n')
 
+        if os.path.isfile(os.path.join(filepath, "{}_spec-G130M-N".format(row['target']))):
+            f.write('dataset.add_line("OI_1302")\n')
+
         f.write('\n')
         f.write('\n')
 
@@ -197,31 +237,45 @@ for row in data:
         f.write('\n')
         f.write('\n')
 
-        f.write('# -- Add MW components for each ion:\n')
-        
+        f.write('# -- Add MW and initial single components for each ion:\n')
+        f.write('#    add 1 to all the logN values for the MW \n')
+        f.write('#    b for the MW is twice the size of the b for the sightline')
+        f.write('#    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit\n')
+        f.write('\n')
+        f.write('\n')
+
         if row['vms'] == -999:
             vcen = (row['vmin'] + row['vmax'])/2.
         else:
             vcen = row['vms']
             
         b_start = np.abs(row['vmax'] - row['vmin'])/2.
-        
-        f.write('#                      ion     z   b   logN\n')
-        f.write('dataset.add_component("CII",   0,  {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(CII)']+1.))
+
+        f.write('# SiII')
         f.write('dataset.add_component("SiII",  0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(SiII)']+1.))
-        f.write('dataset.add_component("SiIII", 0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(SiIII)']+1.))
-        f.write('dataset.add_component("SiIV",  0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(SiIV)']+1.))
-        f.write('dataset.add_component("CIV",   0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(CIV)']+1.))
-        f.write('# # add 1 to all the logN values\n')
-        f.write('\n')
-        f.write('\n')
-        f.write('# -- Add the MS components\n')
-        f.write('#    The z is now an offset in velocity\n')
-        f.write('dataset.add_component_velocity("CII",   {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(CII)']))
         f.write('dataset.add_component_velocity("SiII",  {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(SiII)']))
+
+        f.write('# SiIII')
+        f.write('dataset.add_component("SiIII", 0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(SiIII)']+1.))
         f.write('dataset.add_component_velocity("SiIII", {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(SiIII)']))
+
+        f.write('# SiIV')
+        f.write('dataset.add_component("SiIV",  0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(SiIV)']+1.))
         f.write('dataset.add_component_velocity("SiIV",  {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(SiIV)']))
+
+        f.write('# CII')
+        f.write('dataset.add_component("CII",   0,  {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start * 2., row['logN(CII)'] + 1.))
+        f.write('dataset.add_component_velocity("CII",   {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(CII)']))
+
+        f.write('# CIV')
+        f.write('dataset.add_component("CIV",   0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start*2., row['logN(CIV)']+1.))
         f.write('dataset.add_component_velocity("CIV",   {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(CIV)']))
+
+        if os.path.isfile(os.path.join(filepath, "{}_spec-G130M-N".format(row['target']))):
+            f.write('# OI')
+            f.write('dataset.add_component("OI",   0., {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(b_start * 2., row['logN(OI)'] + 1.))
+            f.write('dataset.add_component_velocity("CIV",   {}, {}, {}, var_z=1, var_b=1, var_N=1)\n'.format(vcen, b_start, row['logN(OI)']))
+
         f.write('\n')
         f.write('\n')
         f.write('# -- Prepare the dataset: This will prompt the user for interactive\n')
