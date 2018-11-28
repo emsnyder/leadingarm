@@ -2,7 +2,7 @@ import numpy as np
 from astropy.io import fits
 import os
 
-datatable = '/Users/efrazer/science/datafile1418.fits'
+datatable = '/Users/efrazer/leadingarm/datafile1418.fits'
 
 data = fits.getdata(datatable)
 
@@ -26,7 +26,7 @@ for row in data:
     # if os.path.isfile('/Users/efrazer/science/scripts_new/vf_{}.py'.format(row['target'])):
     #     continue
 
-    with open('/Users/efrazer/science/scripts_new/vf_{}.py'.format(row['target']), 'w') as f:
+    with open('/Users/efrazer/leadingarm/scripts_new/vf_{}.py'.format(row['target']), 'w') as f:
 
         f.write('import numpy as np\n')
         f.write('import VoigtFit\n')
