@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("UVQSJ101629.20-315023.6-SiII")
+dataset.set_name("UVQSJ101629.20-315023.6-OI")
 dataset.verbose = True
 
 
@@ -37,28 +37,28 @@ def downsample_1d(myarr, factor):
 
 
 # -- Load the COS data (G130M and G160M if available) in ASCII format:
-G130M_filename = "/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/UVQSJ101629.20-315023.6-G130M"
-
+# G130M_filename = "/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/UVQSJ101629.20-315023.6-G130M"
+#
 res_g130m = 16000.
-
-wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)
-
-wl_g130m_rb = downsample_1d(wl_g130m, 3)
-spec_g130m_rb = downsample_1d(spec_g130m, 3)
-err_g130m_rb = downsample_1d(err_g130m, 3)
-
-dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
+#
+# wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)
+#
+# wl_g130m_rb = downsample_1d(wl_g130m, 3)
+# spec_g130m_rb = downsample_1d(spec_g130m, 3)
+# err_g130m_rb = downsample_1d(err_g130m, 3)
+#
+# dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
 
 # There is night only data for this sightline, so add this when fitting OI.
-# G130M_N_filename = "/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/UVQSJ101629.20-315023.6-G130M-N"
+G130M_N_filename = "/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/UVQSJ101629.20-315023.6-G130M-N"
 
-# wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_N_filename, unpack=True)
+wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_N_filename, unpack=True)
 
-# wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
-# spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
-# err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
+wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
+spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
+err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
 
-# dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
+dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
 
 
 # -- Change the width of velocity search region
@@ -79,16 +79,16 @@ dataset.velspan = 1000.0
 # Si II   1190.4158   2.502E-01
 # O I     1302
 
-dataset.add_line("SiII_1260")
-dataset.add_line("SiII_1193")
-dataset.add_line("SiII_1190")
+# dataset.add_line("SiII_1260")
+# dataset.add_line("SiII_1193")
+# dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
-# dataset.add_line("OI_1302")
+dataset.add_line("OI_1302")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -103,19 +103,25 @@ dataset.add_line("SiII_1190")
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-dataset.add_component("SiII",  0., 25.0, 16.05, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiII",  50, 20.0, 14.05, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiII",  130, 20.0, 14.05, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  160, 20.0, 13.05, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiII",  200, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiII",  250, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 25.0, 16.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  50, 20.0, 14.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  130, 20.0, 14.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  200, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  250, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 80.0, 13.46, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 210, 40.0, 12.46, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII",  0., 30.0, 13.5, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("SiIII",  50, 30.0, 13.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",  160, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("SiIII",  130, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("SiIII",  200, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("SiIII",  230, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",  240, 20.0, 12.5, var_z=1, var_b=1, var_N=1)
 
 # OI
-
+dataset.add_component("OI",  0., 50.0, 15.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("OI",  150, 15.0, 14.05, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("OI",  200, 15.0, 14.05, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -129,12 +135,11 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="UVQSJ101629.20-315023.6-SiII.pdf")
+dataset.plot_fit(filename="UVQSJ101629.20-315023.6-OI.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("UVQSJ101629.20-315023.6-SiII.fit")
-dataset.save_cont_parameters_to_file("UVQSJ101629.20-315023.6-SiII.cont")
-dataset.save_fit_regions("UVQSJ101629.20-315023.6-SiII.reg")
-
+dataset.save_parameters("UVQSJ101629.20-315023.6-OI.fit")
+dataset.save_cont_parameters_to_file("UVQSJ101629.20-315023.6-OI.cont")
+dataset.save_fit_regions("UVQSJ101629.20-315023.6-OI.reg")

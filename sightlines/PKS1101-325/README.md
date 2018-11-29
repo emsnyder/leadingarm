@@ -24,8 +24,8 @@ Si IV 1393, 1402 using 4 components:
 S II 1253 uisng 3 components:
 ```
 0 - MW
-1 - Leading Arm 1
-2 - Leading Arm 2 (large error)
+1 - Leading Arm 1 (very broad with large error)
+2 - Leading Arm 2 (very slender with large error)
 ```
 
 **Other Notes:**
