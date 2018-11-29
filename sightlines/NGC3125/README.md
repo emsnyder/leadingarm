@@ -2,14 +2,14 @@
 
 **Found good fits for the following ions:**
 
-O I 1302: using 3 components
+O I 1302 using 3 components:
 ```
 0 - MW
 1 - Leading Arm 1
 2 - Leading Arm 2
 Note that the errors on this fit are rather large.
 ```
-Si II 1190, 1260: using 3 components
+Si II 1190, 1260 using 3 components:
 ```
 0 - MW
 1 - Leading Arm 1
@@ -18,14 +18,14 @@ Si II 1190, 1260: using 3 components
 
 **Low confidence fits for the following ions:**
 
-Si III 1206: using 3 components
+Si III 1206 using 3 components:
 ```
 0 - MW
 1 - Leading Arm 1
 2 - Leading Arm 2
 ```
 
-Si IV 1393, 1402: using 2 components**
+Si IV 1393, 1402 using 2 components:
 ```
 0 - MW
 1 - Leading Arm
