@@ -28,5 +28,5 @@ Found good fits for the following ions:
 1 - Leading Arm Component
 ```
 
-**Other Notes**
+**Other Notes:**
 Andy and I tried this one together both in VoigtFit (Python) and VPFit (IDL). We found similar results for CIV and SiIV, but converging results for OI and SiII. 
