@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("IRAS_F09539-0439-SiII")
+dataset.set_name("IRAS_F09539-0439-OI")
 dataset.verbose = True
 
 
@@ -37,32 +37,32 @@ def downsample_1d(myarr, factor):
 
 
 # -- Load the COS data (G130M and G160M if available) in ASCII format:
-G130M_filename = "/Users/efrazer/leadingarm/sightlines/IRAS_F09539-0439/IRAS_F09539-0439-G130M"
+# G130M_filename = "/Users/efrazer/leadingarm/sightlines/IRAS_F09539-0439/IRAS_F09539-0439-G130M"
 
 res_g130m = 16000.
 
-wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)
-
-wl_g130m_rb = downsample_1d(wl_g130m, 3)
-spec_g130m_rb = downsample_1d(spec_g130m, 3)
-err_g130m_rb = downsample_1d(err_g130m, 3)
-
-dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
+# wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)
+#
+# wl_g130m_rb = downsample_1d(wl_g130m, 3)
+# spec_g130m_rb = downsample_1d(spec_g130m, 3)
+# err_g130m_rb = downsample_1d(err_g130m, 3)
+#
+# dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
 
 # There is night only data for this sightline, so add this when fitting OI.
-# G130M_N_filename = "/Users/efrazer/leadingarm/sightlines/IRAS_F09539-0439/IRAS_F09539-0439-G130M-N"
+G130M_N_filename = "/Users/efrazer/leadingarm/sightlines/IRAS_F09539-0439/IRAS_F09539-0439-G130M-N"
 
-# wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_N_filename, unpack=True)
+wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_N_filename, unpack=True)
 
-# wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
-# spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
-# err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
+wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
+spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
+err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
 
-# dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
+dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 300.0
+dataset.velspan = 1000.0
 
 
 # -- Add the ions we want to fit
@@ -80,13 +80,11 @@ dataset.velspan = 300.0
 # O I     1302
 
 # dataset.add_line("SiII_1260")
-dataset.add_line("SiII_1193")
-dataset.add_line("SiII_1190")
-# dataset.add_line("SiIII_1206")
+# dataset.add_line("SiII_1193")
+# dataset.add_line("SiII_1190")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-# dataset.add_line("CII_1334")
-# dataset.add_line("OI_1302")
+dataset.add_line("OI_1302")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -100,25 +98,17 @@ dataset.add_line("SiII_1190")
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-dataset.add_component("SiII",  0., 100.0, 15.05, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiII",  160, 50.0, 14.05, var_z=1, var_b=1, var_N=1)
-
-# SiIII
-# dataset.add_component("SiIII", 0., 100.0, 14.55, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 160, 50.0, 13.55, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 100.0, 15.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  160, 50.0, 14.05, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-# dataset.add_component("SiIV",  0., 100.0, 13.86, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  160, 50.0, 12.86, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIV",  0., 40.0, 13.46, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  90, 50.0, 13.4, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  160, 20.0, 12.86, var_z=1, var_b=1, var_N=1)
 
-# CII
-# dataset.add_component("CII",   0,  100.0, 15.86, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   160, 50.0, 14.86, var_z=1, var_b=1, var_N=1)
-
-# CIV
-# dataset.add_component("CIV",   0., 100.0, -998.0, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   160, 50.0, -999.0, var_z=1, var_b=1, var_N=1)
-
+# OI
+dataset.add_component("OI",  0., 50.0, 15.05, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("OI",  190, 50.0, 14.05, var_z=1, var_b=1, var_N=1)
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
@@ -131,12 +121,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="IRAS_F09539-0439-SiII.pdf", max_rows=6)
+dataset.plot_fit(filename="IRAS_F09539-0439-OI.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("IRAS_F09539-0439-SiII.fit")
-dataset.save_cont_parameters_to_file("IRAS_F09539-0439-SiII.cont")
-dataset.save_fit_regions("IRAS_F09539-0439-SiII.reg")
+dataset.save_parameters("IRAS_F09539-0439-OI.fit")
+dataset.save_cont_parameters_to_file("IRAS_F09539-0439-OI.cont")
+dataset.save_fit_regions("IRAS_F09539-0439-OI.reg")
 

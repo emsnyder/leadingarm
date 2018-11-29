@@ -5,21 +5,17 @@
 O I 1302 using 4 components:
 ```
 0 - MW
-1 - Broad Component on Left Edge
-2 - Leading Arm Component 1
-3 - Leading Arm Component 2
+1 - Leading Arm
 ```
 Si II 1190, 1193 using 2 components:
 ```
 0 - MW
 1 - Leading Arm
 Had to limit the velocity fit range to be very small in order to fit the continuum correctly for each line.
-
 ```
 Si IV 1393, 1402 using 2 components:
 ```
 0 - MW
-1 - Leading Arm Component
+1 - Leading Arm 1
+2 - Leading Arm 2 (very broad with large error)
 ```
-
-**Other Notes:**
