@@ -1,0 +1,9 @@
+# Chebyshev Polynomial Coefficients
+# Region 0: 
+ p0   =  9.652e-01    6.626e-03
+ p1   =  -1.454e-02    9.638e-03
+
+# Region 1: 
+ p0   =  9.726e-01    7.657e-03
+ p1   =  -1.261e-02    1.234e-02
+
