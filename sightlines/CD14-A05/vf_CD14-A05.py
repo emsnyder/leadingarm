@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("CD14-A05-CIV-2")
+dataset.set_name("CD14-A05-SiIV")
 dataset.verbose = True
 
 
@@ -95,10 +95,10 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiII_1526")
-# dataset.add_line("SiIV_1393")
-# dataset.add_line("SiIV_1402")
-dataset.add_line("CIV_1548")
-dataset.add_line("CIV_1550")
+dataset.add_line("SiIV_1393")
+dataset.add_line("SiIV_1402")
+# dataset.add_line("CIV_1548")
+# dataset.add_line("CIV_1550")
 # dataset.add_line("OI_1302")
 
 
@@ -122,15 +122,15 @@ dataset.add_line("CIV_1550")
 
 
 # SiIV
-# dataset.add_component("SiIV",  0., 30.0, 13.63, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  75, 15, 12.3, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  130, 30, 13.3, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  190, 30, 13.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIV",  0., 30.0, 13.63, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  75, 30, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  170, 30, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  190, 30, 12.3, var_z=1, var_b=1, var_N=1)
 
 # CIV
-dataset.add_component("CIV",   0., 42.0, 14.52, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   50, 15.5, 13.2, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   120, 15.5, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 42.0, 14.52, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   50, 15.5, 13.2, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("CIV",   120, 15.5, 13.0, var_z=1, var_b=1, var_N=1)
 
 # OI
 # dataset.add_component("OI",  0., 30.0, 14.05, var_z=1, var_b=1, var_N=1)
@@ -149,12 +149,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="CD14-A05-CIV-2.pdf")
+dataset.plot_fit(filename="CD14-A05-SiIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("CD14-A05-CIV-2.fit")
-dataset.save_cont_parameters_to_file("CD14-A05-CIV-2.cont")
-dataset.save_fit_regions("CD14-A05-CIV-2.reg")
+dataset.save_parameters("CD14-A05-SiIV.fit")
+dataset.save_cont_parameters_to_file("CD14-A05-SiIV.cont")
+dataset.save_fit_regions("CD14-A05-SiIV.reg")
 
