@@ -95,7 +95,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
 dataset.add_line("SiIV_1393")
-# dataset.add_line("SiIV_1402")
+dataset.add_line("SiIV_1402")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 # dataset.add_line("OI_1302")
@@ -119,10 +119,11 @@ dataset.add_line("SiIV_1393")
 # dataset.add_component_velocity("SiII",  120., 47.5, 13.05, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-dataset.add_component("SiIV",  0., 30.0, 13.99, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  50, 15.5, 12.99, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  120, 47.5, 12.99, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  200, 47.5, 12.99, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIV",  0., 30.0, 13.63, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  75, 15, 12.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  130, 30, 13.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  190, 30, 13.3, var_z=1, var_b=1, var_N=1)
+
 
 # CIV
 # dataset.add_component("CIV",   0., 95.0, 14.52, var_z=1, var_b=1, var_N=1)
@@ -145,7 +146,7 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="CD14-A05-SiIV.pdf", max_rows=6)
+dataset.plot_fit(filename="CD14-A05-SiIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
