@@ -2,7 +2,7 @@
 
 **Found good fits for the following ions:**
 
-O I 1302 using 4 components:
+O I 1302 using 2 components:
 ```
 0 - MW
 1 - Leading Arm
@@ -13,7 +13,7 @@ Si II 1190, 1193 using 2 components:
 1 - Leading Arm
 Had to limit the velocity fit range to be very small in order to fit the continuum correctly for each line.
 ```
-Si IV 1393, 1402 using 2 components:
+Si IV 1393, 1402 using 3 components:
 ```
 0 - MW
 1 - Leading Arm 1
