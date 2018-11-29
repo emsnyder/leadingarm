@@ -19,3 +19,7 @@ Si IV 1393, 1402 using 3 components:
 1 - Leading Arm 1
 2 - Leading Arm 2 (very broad with large error)
 ```
+
+**Other notes:**
+
+Tried adding extra components for O I and Si II but didn't have much luck with VF. Single component fits were much better.
