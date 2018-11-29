@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("CD14-A05-XXX")
+dataset.set_name("CD14-A05-SiIV")
 dataset.verbose = True
 
 
@@ -63,13 +63,13 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 # There is night only data for this sightline, so add this when fitting OI.
 # G130M_N_filename = "/Users/efrazer/leadingarm/sightlines/CD14-A05/CD14-A05-G130M-N"
-
+#
 # wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_N_filename, unpack=True)
-
+#
 # wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
 # spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
 # err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
-
+#
 # dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
 
 
@@ -94,10 +94,8 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
-# dataset.add_line("SiIII_1206")
-# dataset.add_line("SiIV_1393")
+dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-# dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 # dataset.add_line("OI_1302")
@@ -115,25 +113,26 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 95.0, 14.05, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  120, 47.5, 13.05, var_z=1, var_b=1, var_N=1)
-
-# SiIII
-# dataset.add_component("SiIII", 0., 95.0, 13.46, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 120, 47.5, 12.46, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 30.0, 14.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  50., 15., 13.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  50., 105., 13.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  120., 47.5, 13.05, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-# dataset.add_component("SiIV",  0., 95.0, 13.99, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  120, 47.5, 12.99, var_z=1, var_b=1, var_N=1)
-
-# CII
-# dataset.add_component("CII",   0,  95.0, 14.99, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   120, 47.5, 13.99, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIV",  0., 30.0, 13.99, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  50, 15.5, 12.99, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  120, 47.5, 12.99, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  200, 47.5, 12.99, var_z=1, var_b=1, var_N=1)
 
 # CIV
 # dataset.add_component("CIV",   0., 95.0, 14.52, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("CIV",   120, 47.5, 13.52, var_z=1, var_b=1, var_N=1)
 
+# OI
+# dataset.add_component("OI",  0., 30.0, 14.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("OI",  50., 15., 13.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("OI",  120., 47.5, 13.05, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("OI",  -50., 47.5, 13.05, var_z=1, var_b=1, var_N=1)
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
@@ -146,12 +145,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="CD14-A05-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="CD14-A05-SiIV.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("CD14-A05-XXX.fit")
-dataset.save_cont_parameters_to_file("CD14-A05-XXX.cont")
-dataset.save_fit_regions("CD14-A05-XXX.reg")
+dataset.save_parameters("CD14-A05-SiIV.fit")
+dataset.save_cont_parameters_to_file("CD14-A05-SiIV.cont")
+dataset.save_fit_regions("CD14-A05-SiIV.reg")
 

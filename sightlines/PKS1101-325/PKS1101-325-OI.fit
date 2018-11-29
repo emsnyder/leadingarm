@@ -1,0 +1,14 @@
+#comp   ion   redshift               b (km/s)       log(N/cm^-2)
+  0       OI  0.000018 0.000010     42.49   4.46    15.228 0.063
+  1       OI  0.000411 0.000016     36.69   8.37    15.116 0.068
+  2       OI  0.000621 0.000022     17.65   7.71    14.369 0.219
+
+
+
+# Python script version:
+# The commands below can be copied directly to a script.
+# dataset.redshift = 0.000000.
+# dataset.add_component_velocity('OI', 5.5, 42.5, 15.2)
+# dataset.add_component_velocity('OI', 123.3, 36.7, 15.1)
+# dataset.add_component_velocity('OI', 186.1, 17.6, 14.4)
+
