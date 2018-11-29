@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("CD14-A05-SiIV")
+dataset.set_name("CD14-A05-SiII-2")
 dataset.verbose = True
 
 
@@ -91,11 +91,12 @@ dataset.velspan = 1000.0
 # Si II   1190.4158   2.502E-01
 # O I     1302
 
-# dataset.add_line("SiII_1260")
-# dataset.add_line("SiII_1193")
-# dataset.add_line("SiII_1190")
-dataset.add_line("SiIV_1393")
-dataset.add_line("SiIV_1402")
+dataset.add_line("SiII_1260")
+dataset.add_line("SiII_1193")
+dataset.add_line("SiII_1190")
+dataset.add_line("SiII_1526")
+# dataset.add_line("SiIV_1393")
+# dataset.add_line("SiIV_1402")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 # dataset.add_line("OI_1302")
@@ -113,21 +114,23 @@ dataset.add_line("SiIV_1402")
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 30.0, 14.05, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  50., 15., 13.05, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  50., 105., 13.05, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  120., 47.5, 13.05, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiII",  0., 15.0, 15.85, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  -70., 10., 13.05, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  50., 15., 14.05, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  120., 30.5, 13.85, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  200., 50.5, 13.65, var_z=1, var_b=1, var_N=1)
+
 
 # SiIV
-dataset.add_component("SiIV",  0., 30.0, 13.63, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  75, 15, 12.3, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  130, 30, 13.3, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  190, 30, 13.3, var_z=1, var_b=1, var_N=1)
-
+# dataset.add_component("SiIV",  0., 30.0, 13.63, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  75, 15, 12.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  130, 30, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  190, 30, 13.3, var_z=1, var_b=1, var_N=1)
 
 # CIV
-# dataset.add_component("CIV",   0., 95.0, 14.52, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   120, 47.5, 13.52, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 50.0, 14.52, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("CIV",   50, 15.5, 13.52, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   100, 30.5, 13.52, var_z=1, var_b=1, var_N=1)
 
 # OI
 # dataset.add_component("OI",  0., 30.0, 14.05, var_z=1, var_b=1, var_N=1)
@@ -146,12 +149,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="CD14-A05-SiIV.pdf")
+dataset.plot_fit(filename="CD14-A05-SiII-2.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("CD14-A05-SiIV.fit")
-dataset.save_cont_parameters_to_file("CD14-A05-SiIV.cont")
-dataset.save_fit_regions("CD14-A05-SiIV.reg")
+dataset.save_parameters("CD14-A05-SiII-2.fit")
+dataset.save_cont_parameters_to_file("CD14-A05-SiII-2.cont")
+dataset.save_fit_regions("CD14-A05-SiII-2.reg")
 
