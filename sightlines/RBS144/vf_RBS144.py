@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("RBS144-XXX")
+dataset.set_name("RBS144-SiIII")
 dataset.verbose = True
 
 
@@ -83,12 +83,8 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
-# dataset.add_line("SiIII_1206")
-# dataset.add_line("SiIV_1393")
-# dataset.add_line("SiIV_1402")
+dataset.add_line("SiIII_1206")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
-# dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -104,24 +100,22 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 145.0, 14.86, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  92, 72.5, 13.86, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 50.0, 13.86, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  92, 32.5, 13.2, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  180, 32.5, 13.2, var_z=1, var_b=1, var_N=1)
+
 
 # SiIII
-# dataset.add_component("SiIII", 0., 145.0, 14.56, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 92, 72.5, 13.56, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIII", 0., 50.0, 13.56, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 92, 32.5, 13., var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 180, 32.5, 13., var_z=1, var_b=1, var_N=1)
 
-# SiIV
-# dataset.add_component("SiIV",  0., 145.0, 14.1, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  92, 72.5, 13.1, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  145.0, 15.6, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   92, 72.5, 14.6, var_z=1, var_b=1, var_N=1)
-
-# CIV
-# dataset.add_component("CIV",   0., 145.0, 14.51, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   92, 72.5, 13.51, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  50.0, 14.6, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   92, 30.5, 13.6, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   180, 30, 13.6, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   250, 30, 13.6, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -135,12 +129,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="RBS144-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="RBS144-SiIII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("RBS144-XXX.fit")
-dataset.save_cont_parameters_to_file("RBS144-XXX.cont")
-dataset.save_fit_regions("RBS144-XXX.reg")
+dataset.save_parameters("RBS144-SiIII.fit")
+dataset.save_cont_parameters_to_file("RBS144-SiIII.cont")
+dataset.save_fit_regions("RBS144-SiIII.reg")
 
