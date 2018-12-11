@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("FAIRALL9-XXX")
+dataset.set_name("FAIRALL9-CIV")
 dataset.verbose = True
 
 
@@ -83,12 +83,13 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
+# dataset.add_line("SiII_1526")
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
-# dataset.add_line("CIV_1550")
+dataset.add_line("CIV_1548")
+dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -101,24 +102,30 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 160.0, 15.53, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 80.0, 15.53, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("SiII",  140, 40.0, 14.0, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiII",  184, 80.0, 14.53, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 160.0, 14.54, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 184, 80.0, 13.54, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 50.0, 13.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 106, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 184, 50.0, 13.54, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-# dataset.add_component("SiIV",  0., 160.0, 14.02, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  184, 80.0, 13.02, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIV",  0., 50.0, 13.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV", 60, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV", 106, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  184, 50.0, 13.02, var_z=1, var_b=1, var_N=1)
 
 # CII
 # dataset.add_component("CII",   0,  160.0, 15.88, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("CII",   184, 80.0, 14.88, var_z=1, var_b=1, var_N=1)
 
 # CIV
-# dataset.add_component("CIV",   0., 160.0, 14.49, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   184, 80.0, 13.49, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CIV",   0., 30.0, 14.49, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", 60, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", 106, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   184, 50.0, 13.49, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -132,12 +139,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="FAIRALL9-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="FAIRALL9-CIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("FAIRALL9-XXX.fit")
-dataset.save_cont_parameters_to_file("FAIRALL9-XXX.cont")
-dataset.save_fit_regions("FAIRALL9-XXX.reg")
+dataset.save_parameters("FAIRALL9-CIV.fit")
+dataset.save_cont_parameters_to_file("FAIRALL9-CIV.cont")
+dataset.save_fit_regions("FAIRALL9-CIV.reg")
 
