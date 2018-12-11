@@ -1,0 +1,14 @@
+#comp   ion   redshift               b (km/s)       log(N/cm^-2)
+  0      CII  -0.000011 0.000008     34.39   4.18    14.770 0.112
+  1      CII  -0.000630 0.000017     31.31   7.44    14.157 0.081
+  2      CII  -0.000943 0.000015     38.70   6.15    14.409 0.060
+
+
+
+# Python script version:
+# The commands below can be copied directly to a script.
+# dataset.redshift = 0.000000.
+# dataset.add_component_velocity('CII', -3.3, 34.4, 14.8)
+# dataset.add_component_velocity('CII', -188.7, 31.3, 14.2)
+# dataset.add_component_velocity('CII', -282.8, 38.7, 14.4)
+

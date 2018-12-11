@@ -4,20 +4,20 @@
 Si II 1190, 1193, 1260, 1526 using 2 components:
 ```
 0 - MW
-1 - Leading Arm
+1 - Stream
 ```
 Si III 1206 using 3 components:
 ```
 0 - MW
-1 - Leading Arm 1
-2 - Leading Arm 2
+1 - Stream 1
+2 - Stream 2
 ```
 Si IV 1402 using 4 components:
 ```
 0 - MW
-1 - Leading Arm 1
-2 - Leading Arm 2 (wide but ok)
-3 - Leading Arm 3
+1 - Stream 1
+2 - Stream 2 (wide but ok)
+3 - Stream 3
 ```
 
 
