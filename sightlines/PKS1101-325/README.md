@@ -1,4 +1,4 @@
-## NGC3125
+## PKS1101-325
 
 **Found good fits for the following ions:**
 

@@ -61,6 +61,7 @@ err_g130m_rb = downsample_1d(err_g130m, 3)
 
 dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
 
+NGC7714.cos.night.dat
 
 # -- Change the width of velocity search region
 dataset.velspan = 1000.0
