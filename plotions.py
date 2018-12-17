@@ -65,12 +65,12 @@ sldict = {'UVQSJ101629.20-315023.6':
                'ions': ['SiII', 'SiIII'],
                'dir': 'MS'},
           'PHL2525':
-              {'ion_label': [],
-               'ions': [],
+              {'ion_label': ['C II 1334', 'C IV 1548'],
+               'ions': ['CII', 'CIV'],
                'dir': 'MS'},
           'NGC7714':
-              {'ion_label': [],
-               'ions': [],
+              {'ion_label': ['C II 1334', 'C IV 1548'],
+               'ions': ['CII', 'CIV'],
                'dir': 'MS'},
           'FAIRALL9':
               {'ion_label': ['Si II 1193', 'Si III 1206', 'Si IV 1402'],

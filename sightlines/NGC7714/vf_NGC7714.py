@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("NGC7714-XXX")
+dataset.set_name("NGC7714-CIV")
 dataset.verbose = True
 
 
@@ -61,10 +61,20 @@ err_g130m_rb = downsample_1d(err_g130m, 3)
 
 dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
 
-NGC7714.cos.night.dat
+
+# G130M_filename_n = "/Users/efrazer/leadingarm/sightlines/NGC7714/NGC7714.cos.night.dat"
+#
+# wl_g130m_n, spec_g130m_n, err_g130m_n = np.loadtxt(G130M_filename_n, unpack=True)
+#
+# wl_g130m_rb_n = downsample_1d(wl_g130m_n, 3)
+# spec_g130m_rb_n = downsample_1d(spec_g130m_n, 3)
+# err_g130m_rb_n = downsample_1d(err_g130m_n, 3)
+#
+# dataset.add_data(wl_g130m_rb_n, spec_g130m_rb_n, 299792.458/res_g130m, err=err_g130m_rb_n, normalized=False)
+
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 600.0
 
 
 # -- Add the ions we want to fit
@@ -81,6 +91,7 @@ dataset.velspan = 1000.0
 # Si II   1190.4158   2.502E-01
 # O I     1302
 
+
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
@@ -88,7 +99,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
+dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 
 
@@ -102,8 +113,10 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 230.0, 14.65, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  -320, 115.0, 13.65, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 100.0, 14.65, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  -320, 70.0, 13.65, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  -400, 40.0, 13.65, var_z=1, var_b=1, var_N=1)
+
 
 # SiIII
 # dataset.add_component("SiIII", 0., 230.0, 14.69, var_z=1, var_b=1, var_N=1)
@@ -114,12 +127,13 @@ dataset.velspan = 1000.0
 # dataset.add_component_velocity("SiIV",  -320, 115.0, 13.51, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  230.0, 15.46, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  230.0, 14.45, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("CII",   -320, 115.0, 14.46, var_z=1, var_b=1, var_N=1)
 
+
 # CIV
-# dataset.add_component("CIV",   0., 230.0, 14.93, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   -320, 115.0, 13.93, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CIV",   0., 230.0, 14.93, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -320, 115.0, 13.93, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -133,12 +147,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="NGC7714-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="NGC7714-CIV.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("NGC7714-XXX.fit")
-dataset.save_cont_parameters_to_file("NGC7714-XXX.cont")
-dataset.save_fit_regions("NGC7714-XXX.reg")
+dataset.save_parameters("NGC7714-CIV.fit")
+dataset.save_cont_parameters_to_file("NGC7714-CIV.cont")
+dataset.save_fit_regions("NGC7714-CIV.reg")
 
