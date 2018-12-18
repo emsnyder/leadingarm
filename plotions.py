@@ -52,9 +52,13 @@ sldict = {'UVQSJ101629.20-315023.6':
               {'ion_label': ['Si II 1190', 'Si IV 1393'],
                'ions': ['SiII', 'SiIV'],
                'dir': 'LA'},
+          # 'SDSSJ234500.43-005936.0':
+          #     {'ion_label': ['Si II 1260', 'Si III 1206', 'Si IV 1393'],
+          #      'ions': ['SiII', 'SiIII', 'SiIV'],
+          #      'dir': 'MS'},
           'SDSSJ234500.43-005936.0':
-              {'ion_label': ['Si II 1260', 'Si III 1206', 'Si IV 1393'],
-               'ions': ['SiII', 'SiIII', 'SiIV'],
+              {'ion_label': ['Si II 1260', 'Si IV 1393'],
+               'ions': ['SiII', 'SiIV'],
                'dir': 'MS'},
           'SDSSJ001224.01-102226.5':
               {'ion_label': ['C II 1334', 'C IV 1548'],
@@ -72,9 +76,13 @@ sldict = {'UVQSJ101629.20-315023.6':
               {'ion_label': ['C II 1334', 'C IV 1548'],
                'ions': ['CII', 'CIV'],
                'dir': 'MS'},
+          # 'FAIRALL9':
+          #     {'ion_label': ['Si II 1193', 'Si III 1206', 'Si IV 1402'],
+          #      'ions': ['SiII', 'SiIII', 'SiIV'],
+          #      'dir': 'MS'}
           'FAIRALL9':
-              {'ion_label': ['Si II 1193', 'Si III 1206', 'Si IV 1402'],
-               'ions': ['SiII', 'SiIII', 'SiIV'],
+              {'ion_label': ['Si II 1193', 'Si IV 1402'],
+               'ions': ['SiII', 'SiIV'],
                'dir': 'MS'}
           }
 
@@ -184,20 +192,34 @@ for key in sldict:
                     vcomp = zcomp*c
                     ax.axvline(vcomp, color='deepskyblue', linestyle='--')
 
+                handles, labels = ax.get_legend_handles_labels()
+                handles = [handles[0], handles[2], handles[1]]
+                labels = [labels[0], labels[2], labels[1]]
+
             else:
-                ax.plot(v_arr, fluxarr+1.25, color='limegreen', linestyle='-', label=ion_label)
-                ax.plot(v_arr, bestfitarr+1.25, color='black', linestyle='-')
+                ax.plot(v_arr, fluxarr+1.5, color='limegreen', linestyle='-', label=ion_label)
+                ax.plot(v_arr, bestfitarr+1.5, color='black', linestyle='-')
                 for zcomp in zval:
                     vcomp = zcomp*c
                     ax.axvline(vcomp, color='limegreen', linestyle='--')
 
-        ax.set_xlim(-300.,+500.)
+                handles, labels = ax.get_legend_handles_labels()
+                handles = [handles[0], handles[2], handles[3], handles[1]]
+                labels = [labels[0], labels[2], labels[3], labels[1]]
+
+        if (key == 'SDSSJ234500.43-005936.0') or (key == 'PHL2525') :
+            ax.set_xlim(-400.,+150.)
+        elif key == 'NGC7714':
+            ax.set_xlim(-600, 200.)
+        elif (key == 'RBS144') or (key == 'FAIRALL9'):
+            ax.set_xlim(-150, 300.)
+        elif key == 'SDSSJ001224.01-102226.5':
+            ax.set_xlim(-400, 150)
+        else:
+            ax.set_xlim(-200,400)
         ax.set_xlabel('Relative Velocity [km/s]')
         ax.set_ylabel('Normalized Flux')
         ax.set_title(key)
-        handles, labels = ax.get_legend_handles_labels()
-        handles = [handles[0], handles[2], handles[1]]
-        labels = [labels[0], labels[2], labels[1]]
         ax.legend(handles, labels, prop={'size': 6})
 
         j = j+1
@@ -206,5 +228,7 @@ for key in sldict:
             i = 1
 
 plt.suptitle('Leading Arm Sightlines')
+plt.savefig('leadingarm_offsets.pdf')
 
-plt.show()
+# plt.suptitle('Magellanic Stream Sightlines')
+# plt.savefig('magstream_offsets.pdf')
