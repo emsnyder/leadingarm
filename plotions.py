@@ -13,7 +13,6 @@ PHL2525
 RBS144 - Si II, III
 SDSSJ001224.01-102226.5 - C II and IV
 SDSSJ234500.43-005936.0 - Si II, III and IV (some large errors
-
 Leading Arm
 -----------
 IRASF09539-0439 - Si II and Si IV
