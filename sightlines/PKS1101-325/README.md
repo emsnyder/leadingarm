@@ -17,9 +17,9 @@ Si II 1193 using 3 components:
 Si IV 1393, 1402 using 4 components:
 ```
 0 - MW
-1 - Leading Arm 1
-2 - Leading Arm 2
-3 - Broad component on far right
+1 - Tiny comonent to right of MW
+2 - Broad component on far right
+3 - Leading Arm 1
 ```
 S II 1253 uisng 3 components:
 ```

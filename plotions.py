@@ -165,7 +165,7 @@ i, j = 0, 0
 
 for key in sldict:
 
-    if sldict[key]['dir'] == 'LA':
+    if sldict[key]['dir'] == 'MS':
 
         ax = plt.subplot(gs[i, j])
 
@@ -216,9 +216,11 @@ for key in sldict:
             ax.set_xlim(-400, 150)
         else:
             ax.set_xlim(-200,400)
-        ax.set_xlabel('Relative Velocity [km/s]')
-        ax.set_ylabel('Normalized Flux')
-        ax.set_title(key)
+        ax.set_xlabel('Relative Velocity ' + r'$[km/s]$', fontsize=12)
+        ax.set_ylabel('Normalized Flux', fontsize=12)
+        ax.set_title(key, fontsize=12)
+        plt.setp(ax.get_xticklabels(), fontsize=10)
+        plt.setp(ax.get_yticklabels(), fontsize=10)
         ax.legend(handles, labels, prop={'size': 6})
 
         j = j+1
@@ -226,8 +228,8 @@ for key in sldict:
             j = 0
             i = 1
 
-plt.suptitle('Leading Arm Sightlines')
-plt.savefig('leadingarm_offsets.pdf')
+# plt.suptitle('Leading Arm Sightlines', fontsize=16)
+# plt.savefig('leadingarm_offsets.pdf')
 
-# plt.suptitle('Magellanic Stream Sightlines')
-# plt.savefig('magstream_offsets.pdf')
+plt.suptitle('Magellanic Stream Sightlines', fontsize=16)
+plt.savefig('magstream_offsets.pdf')

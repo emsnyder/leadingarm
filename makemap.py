@@ -4,7 +4,6 @@ from astropy import units as u
 from astropy.coordinates import SkyCoord
 import astropy.coordinates as coord
 import numpy as np
-import cartopy.crs as ccrs
 
 
 # read in data table
@@ -60,34 +59,87 @@ sldict = {'UVQSJ101629.20-315023.6':
                'dir': 'MS'}
           }
 
+# slname = []
+# lvals = []
+# bvals = []
+# hivals = []
+#
+# for key in sldict:
+#     slname.append(key)
+#     lvals.append(data[np.where(data['target'] == key)]['l'])
+#     bvals.append(data[np.where(data['target'] == key)]['b'])
+#     hivals.append(data[np.where(data['target'] == key)]['log(SiIV/SiII)'])
+#
+# # use SkyCoord to create galactic coordinates out of the filtered dataset
+# c = SkyCoord(l=lvals, b=bvals, frame='galactic')
+#
+# langle = coord.Angle(c.l)
+# langle = langle.wrap_at(180 * u.degree)
+# bangle = coord.Angle(c.b)
+#
+# # make a color array from the filtered data
+# colorarray = hivals
+#
+# degree_sign = u'\N{DEGREE SIGN}'
+# newticks = [str(np.int(x))+degree_sign for x in np.arange(150., -151, -30)]
+#
+# # make the plot
+# fig = plt.figure(figsize=(8, 6))
+# ax = fig.add_subplot(111, projection='mollweide')
+# sc = ax.scatter(langle.radian*-1., bangle.radian, c=colorarray, cmap=plt.cm.rainbow, marker='o', s=150)
+# bl = ax.scatter(langle.radian*-1., bangle.radian, facecolors='none', edgecolors='black', marker='o', s=150)
+# for n, xy in enumerate(zip(langle.radian*-1., bangle.radian, slname)):
+#     ax.annotate('{}'.format(n+1), xy=(xy[0],xy[1]), textcoords='data')
+#     print('{} = {}'.format(n+1, xy[2]))
+# plt.grid(True)
+# cbar = plt.colorbar(sc, orientation='vertical')
+# cbar.set_label('H I Column Density ' + r'$[log(N/cm^{-2})]$', labelpad=+6, fontsize=16)
+# ax.set_xlabel('Galactic Longitude', fontsize=16)
+# ax.set_ylabel('Galactic Latitude', fontsize=16)
+# ax.set_xticklabels(newticks)
+# plt.setp(ax.get_xticklabels(), fontsize=14)
+# plt.setp(ax.get_yticklabels(), fontsize=14)
+# plt.savefig('fullmap_labels.pdf')
+
+
 slname = []
-lmsvals = []
-bmsvals = []
+lvals = []
+bvals = []
+hivals = []
 
 for key in sldict:
     slname.append(key)
-    lmsvals.append(data[np.where(data['target']==key)]['LMS'])
-    bmsvals.append(data[np.where(data['target']==key)]['BMS'])
-
+    lvals.append(data[np.where(data['target'] == key)]['l'])
+    bvals.append(data[np.where(data['target'] == key)]['b'])
+    hivals.append(data[np.where(data['target'] == key)]['log(SiIV/SiII)'])
 
 # use SkyCoord to create galactic coordinates out of the filtered dataset
-c = SkyCoord(l=lmsvals, b=bmsvals, frame='galactic')
+c = SkyCoord(l=lvals, b=bvals, frame='galactic')
 
 langle = coord.Angle(c.l)
 langle = langle.wrap_at(180 * u.degree)
 bangle = coord.Angle(c.b)
 
 # make a color array from the filtered data
-colorarray =
+colorarray = hivals
+
+degree_sign = u'\N{DEGREE SIGN}'
+newticks = [str(np.int(x))+degree_sign for x in np.arange(150., -151, -30)]
 
 # make the plot
 fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111, projection='mollweide')
-sc = ax.scatter(langle.radian, bangle.radian, c=colorarray, cmap=plt.cm.rainbow, marker='o', s=100)
-bl = ax.scatter(langle.radian, bangle.radian, facecolors='none', edgecolors='black', marker='o', s=100)
+sc = ax.scatter(langle.radian*-1., bangle.radian, c=colorarray, cmap=plt.cm.rainbow, marker='o', s=150)
+bl = ax.scatter(langle.radian*-1., bangle.radian, facecolors='none', edgecolors='black', marker='o', s=150)
+for n, xy in enumerate(zip(langle.radian*-1., bangle.radian, slname)):
+    ax.annotate('{}'.format(n+1), xy=(xy[0],xy[1]), textcoords='data')
+    print('{} = {}'.format(n+1, xy[2]))
 plt.grid(True)
-cbar = plt.colorbar(sc)
-cbar.set_label(figtitle, labelpad=+1)
-ax.set_xlabel('Magellanic Stream Longitude (Degrees)')
-ax.set_ylabel('Magellanic Stream Latitude (Degrees)')
-plt.savefig(outputname)
+cbar = plt.colorbar(sc, orientation='vertical')
+cbar.set_label('H I Column Density ' + r'$[log(N/cm^{-2})]$', labelpad=+6, fontsize=16)
+ax.set_xlabel('Galactic Longitude', fontsize=16)
+ax.set_ylabel('Galactic Latitude', fontsize=16)
+ax.set_xticklabels(newticks)
+plt.setp(ax.get_xticklabels(), fontsize=14)
+plt.setp(ax.get_yticklabels(), fontsize=14)
+plt.savefig('fullmap_labels.pdf')
