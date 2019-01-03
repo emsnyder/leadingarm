@@ -126,6 +126,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_la_lo.append(bval)
                     berrlist_la_lo.append(b_errval)
 
@@ -135,6 +137,8 @@ for key in sldict:
                     if comp == 0:
                         continue
                     if bval < 10.:
+                        continue
+                    if bval > 70.:
                         continue
                     blist_la_lo.append(bval)
                     berrlist_la_lo.append(b_errval)
@@ -148,6 +152,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_la_med.append(bval)
                     berrlist_la_med.append(b_errval)
                     nlist_la_med.append(nval)
@@ -160,6 +166,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_la_hi.append(bval)
                     berrlist_la_hi.append(b_errval)
 
@@ -169,6 +177,8 @@ for key in sldict:
                     if comp == 0:
                         continue
                     if bval < 10.:
+                        continue
+                    if bval > 70.:
                         continue
                     blist_la_hi.append(bval)
                     berrlist_la_hi.append(b_errval)
@@ -193,6 +203,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_ms_lo.append(bval)
                     berrlist_ms_lo.append(b_errval)
 
@@ -202,6 +214,8 @@ for key in sldict:
                     if comp == 0:
                         continue
                     if bval < 10.:
+                        continue
+                    if bval > 70.:
                         continue
                     blist_ms_lo.append(bval)
                     berrlist_ms_lo.append(b_errval)
@@ -215,6 +229,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_ms_med.append(bval)
                     berrlist_ms_med.append(b_errval)
                     nlist_ms_med.append(nval)
@@ -227,6 +243,8 @@ for key in sldict:
                         continue
                     if bval < 10.:
                         continue
+                    if bval > 70.:
+                        continue
                     blist_ms_hi.append(bval)
                     berrlist_ms_hi.append(b_errval)
 
@@ -236,6 +254,8 @@ for key in sldict:
                     if comp == 0:
                         continue
                     if bval < 10.:
+                        continue
+                    if bval > 70.:
                         continue
                     blist_ms_hi.append(bval)
                     berrlist_ms_hi.append(b_errval)
@@ -254,11 +274,11 @@ n_la, bins_la, patches_la = plt.hist((blist_la_lo, blist_la_hi), bins=np.arange(
                                      color=['orange', 'deepskyblue'], alpha=0.7, rwidth=0.8, align='mid',
                                      label=['Low Ions (O I, Si II, C II, S II), N={}'.format(len(blist_la_lo)),
                                             'High Ions (Si IV, C IV), N={}'.format(len(blist_la_hi))])
-kstest_la_b = stats.ks_2samp(n_la[0], n_la[1])
+kstest_la_b = stats.ks_2samp(blist_la_hi, blist_la_lo)
 plt.text(49, 6, 'K-S Statistic p-value={:6.5f}'.format(kstest_la_b[1]))
 plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
 plt.xticks(bins_la)
-plt.ylabel('#', fontsize=16)
+plt.ylabel('# of components', fontsize=16)
 plt.yticks(np.arange(np.max(n_la))+1)
 plt.title('Leading Arm Sightlines', fontsize=20)
 plt.legend(prop={'size': 12})
@@ -270,15 +290,15 @@ plt.close()
 
 fig = plt.figure(figsize=(8,6))
 ax = fig.add_subplot(111)
-n_ms, bins_ms, patches_ms = plt.hist((blist_ms_lo, blist_ms_hi), bins=np.arange(10, 100, binwidth),
+n_ms, bins_ms, patches_ms = plt.hist((blist_ms_lo, blist_ms_hi), bins=np.arange(10, 80, binwidth),
                                       color=['orange', 'deepskyblue'], alpha=0.7, rwidth=0.8, align='mid',
                                       label=['Low Ions (O I, Si II, C II), N={}'.format(len(blist_ms_lo)),
                                              'High Ions (Si IV, C IV), N={}'.format(len(blist_ms_hi))])
-kstest_ms_b = stats.ks_2samp(n_ms[0], n_ms[1])
-plt.text(62, 4.3, 'K-S Statistic p-value={:6.5f}'.format(kstest_ms_b[1]))
+kstest_ms_b = stats.ks_2samp(blist_ms_hi, blist_ms_lo)
+plt.text(49, 4.3, 'K-S Statistic p-value={:6.5f}'.format(kstest_ms_b[1]))
 plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
 plt.xticks(bins_ms)
-plt.ylabel('#', fontsize=16)
+plt.ylabel('# of components', fontsize=16)
 plt.yticks(np.arange(np.max(n_ms))+1)
 plt.title('Magellanic Stream Sightlines', fontsize=20)
 plt.legend(prop={'size': 12})
@@ -300,12 +320,9 @@ n_la_ncol, bins_la_ncol, patches_la_ncol = plt.hist((nlist_la_lo, nlist_la_med, 
                                                      label=['Si II, N={}'.format(len(nlist_la_lo)),
                                                             'Si III, N={}'.format(len(nlist_la_med)),
                                                             'Si IV, N={}'.format(len(nlist_la_hi))])
-kstest_la_n = stats.ks_2samp(n_la_ncol[0], n_la_ncol[2])
-plt.text(12.23, 3.2, 'K-S Statistic p-value={:6.5f}'.format(kstest_la_n[1]))
-plt.text(12.27, 3.05, '(between Si II and Si IV)')
-plt.xlabel('Column Density ' + r'$[log(N/cm^{-2})]$', fontsize=16)
+plt.xlabel('Column Density ' + r'$[\log(N/cm^{-2})]$', fontsize=16)
 plt.xticks(bins_la_ncol)
-plt.ylabel('#', fontsize=16)
+plt.ylabel('# of components', fontsize=16)
 plt.yticks(np.arange(np.max(n_la_ncol))+1)
 plt.title('Leading Arm Sightlines', fontsize=20)
 plt.legend(prop={'size': 12})
@@ -325,12 +342,9 @@ n_ms_ncol, bins_ms_ncol, patches_ms_ncol = plt.hist((nlist_ms_lo, nlist_ms_med, 
                                                      label=['Si II, N={}'.format(len(nlist_ms_lo)),
                                                             'Si III, N={}'.format(len(nlist_ms_med)),
                                                             'Si IV, N={}'.format(len(nlist_ms_hi))])
-kstest_ms_n = stats.ks_2samp(n_ms_ncol[0], n_ms_ncol[2])
-plt.text(12.25, 2.4, 'K-S Statistic p-value={:6.5f}'.format(kstest_ms_n[1]))
-plt.text(12.29, 2.28, '(between Si II and Si IV)')
-plt.xlabel('Column Density ' + r'$[log(N/cm^{-2})]$', fontsize=16)
+plt.xlabel('Column Density ' + r'$[\log(N/cm^{-2})]$', fontsize=16)
 plt.xticks(bins_ms_ncol)
-plt.ylabel('#', fontsize=16)
+plt.ylabel('# of components', fontsize=16)
 plt.yticks(np.arange(np.max(n_ms_ncol))+1)
 plt.title('Magellanic Stream Sightlines', fontsize=20)
 plt.legend(prop={'size': 12})
@@ -339,3 +353,7 @@ plt.setp(ax.get_yticklabels(), fontsize=14)
 plt.savefig('hist-N-MS.pdf')
 plt.close()
 
+print('Leading Arm high ion b values = {}'.format(blist_la_hi))
+print('Leading Arm low ion b values = {}'.format(blist_la_lo))
+print('Stream high ion b values = {}'.format(blist_ms_hi))
+print('Stream low ion b values = {}'.format(blist_ms_lo))
