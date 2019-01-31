@@ -7,3 +7,7 @@ Repo to maintain scripts and results of science project
 `makedatatable.py` - Code that takes the input `origdatafile.txt` from Fox et. al 2014 + 2018 and makes it into an astropy fits table. Outputs `datafile1417.fits`.
 
 `organize.py` - Code to create all the subfolders for each sightline and copy the COS data to the correct spot.
+
+### Plotting routines
+
+`plotions.py` - used to make large 
