@@ -135,7 +135,7 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="3C57-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="3C57-XXX.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
