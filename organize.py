@@ -81,9 +81,9 @@ for row in data:
 
     if path not in paths:
         f = open(path,'w')
-        f.write('## {}\n'.format(row['target']))
+        f.write('## {} - Not yet complete\n'.format(row['target']))
         f.write('**Found good fits for the following ions:**\n\n')
-        f.write('Ion II 1400, 1405 using N components:\n')
+        f.write('Ion using N components:\n')
         f.write('```\n')
         f.write('0 - MW\n')
         if 'MS' in row['region']:

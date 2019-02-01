@@ -1,7 +1,7 @@
-## HE0435-5304
+## HE0435-5304 - Not yet complete
 **Found good fits for the following ions:**
 
-Ion II 1400, 1405 using N components:
+Ion using N components:
 ```
 0 - MW
 1 - LMC

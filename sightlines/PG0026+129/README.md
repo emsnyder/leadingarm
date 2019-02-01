@@ -1,7 +1,7 @@
-## PG0026+129
+## PG0026+129 - Not yet complete
 **Found good fits for the following ions:**
 
-Ion II 1400, 1405 using N components:
+Ion using N components:
 ```
 0 - MW
 1 - Stream
