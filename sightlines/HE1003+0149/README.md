@@ -1,4 +1,4 @@
-##HE1003+0149
+## HE1003+0149
 **Found good fits for the following ions:**
 
 Ion II 1400, 1405 using N components:

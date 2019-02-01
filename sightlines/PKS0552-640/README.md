@@ -1,4 +1,4 @@
-##PKS0552-640
+## PKS0552-640
 **Found good fits for the following ions:**
 
 Ion II 1400, 1405 using N components:

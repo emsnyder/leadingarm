@@ -1,4 +1,4 @@
-##SDSSJ094331.60+053131.0
+## SDSSJ094331.60+053131.0
 **Found good fits for the following ions:**
 
 Ion II 1400, 1405 using N components:

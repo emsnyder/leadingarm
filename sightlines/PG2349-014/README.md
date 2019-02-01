@@ -1,4 +1,4 @@
-##PG2349-014
+## PG2349-014
 **Found good fits for the following ions:**
 
 Ion II 1400, 1405 using N components:

@@ -73,14 +73,15 @@ paths = ['/Users/efrazer/leadingarm/sightlines/3C57/README.md',
          '/Users/efrazer/leadingarm/sightlines/SDSSJ001224.01-102226.5/README.md',
          '/Users/efrazer/leadingarm/sightlines/SDSSJ095915.60+050355.0/README.md',
          '/Users/efrazer/leadingarm/sightlines/SDSSJ234500.43-005936.0/README.md',
-         '/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/README.md']
+         '/Users/efrazer/leadingarm/sightlines/UVQSJ101629.20-315023.6/README.md',
+         '/Users/efrazer/leadingarm/sightlines/HE0153-4520/README.md']
 
 for row in data:
     path = os.path.join(rootdir, 'sightlines', row['target'],'README.md')
 
     if path not in paths:
         f = open(path,'w')
-        f.write('##{}\n'.format(row['target']))
+        f.write('## {}\n'.format(row['target']))
         f.write('**Found good fits for the following ions:**\n\n')
         f.write('Ion II 1400, 1405 using N components:\n')
         f.write('```\n')
