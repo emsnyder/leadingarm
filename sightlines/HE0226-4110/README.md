@@ -1,4 +1,4 @@
-## HE0226-4110 - Not yet complete
+## HE0226-4110
 **Found good fits for the following ions:**
 
 CII 1334 using 5 components:

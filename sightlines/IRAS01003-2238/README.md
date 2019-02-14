@@ -1,12 +1,4 @@
-## IRAS01003-2238 - Not yet complete
-**Found good fits for the following ions:**
+## IRAS01003-2238 
 
-Ion using N components:
-```
-0 - MW
-1 - Stream
-```
-
-
-**Other Notes:**
+**Notes:** No UV detections to fit for this Stream sightline.
 

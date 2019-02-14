@@ -1,4 +1,4 @@
 ## HE0238-1904 
 
 **Notes:**
-No UV Stream detections to fit for this sightline.
+No UV detections to fit for this Stream sightline.

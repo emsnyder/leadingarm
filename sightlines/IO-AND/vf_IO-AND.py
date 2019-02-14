@@ -37,6 +37,30 @@ def downsample_1d(myarr, factor):
 
 
 # -- Load the COS data (G130M and G160M if available) in ASCII format:
+G160M_filename = ""
+
+res_g160m = 19000.
+
+wl_g160m, spec_g160m, err_g160m = np.loadtxt(G160M_filename, unpack=True)
+
+wl_g160m_rb = downsample_1d(wl_g160m, 3)
+spec_g160m_rb = downsample_1d(spec_g160m, 3)
+err_g160m_rb = downsample_1d(err_g160m, 3)
+
+dataset.add_data(wl_g160m_rb, spec_g160m_rb, 299792.458/res_g160m, err=err_g160m_rb, normalized=False)
+
+G130M_filename = ""
+
+res_g130m = 16000.
+
+wl_g130m, spec_g130m, err_g130m = np.loadtxt(G130M_filename, unpack=True)
+
+wl_g130m_rb = downsample_1d(wl_g130m, 3)
+spec_g130m_rb = downsample_1d(spec_g130m, 3)
+err_g130m_rb = downsample_1d(err_g130m, 3)
+
+dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m_rb, normalized=False)
+
 
 # -- Change the width of velocity search region
 dataset.velspan = 1000.0
