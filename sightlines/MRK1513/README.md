@@ -1,10 +1,25 @@
-## MRK1513 - Not yet complete
+## MRK1513 
 **Found good fits for the following ions:**
 
-Ion using N components:
+C II 1334 using 3 components:
 ```
 0 - MW
-1 - Stream
+1 - Stream 1
+2 - Stream 2
+```
+
+C IV 1548, 1550 using 3 components:
+```
+0 - MW
+1 - Stream 1
+2 - Stream 2 (very broad, probably a few components blended)
+```
+
+S III 1206 using 3 components:
+```
+0 - MW
+1 - Stream 1
+2 - Stream 2
 ```
 
 
