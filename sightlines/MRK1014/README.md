@@ -1,12 +1,4 @@
-## MRK1014 - Not yet complete
-**Found good fits for the following ions:**
+## MRK1014 
 
-Ion using N components:
-```
-0 - MW
-1 - Stream
-```
-
-
-**Other Notes:**
+**Notes:** No UV detections for this Stream sightline.
 
