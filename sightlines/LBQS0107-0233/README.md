@@ -1,4 +1,4 @@
-## LBQS0107-0233 - Not yet complete
+## LBQS0107-0233
 **Found good fits for the following ions:**
 
 Si III 1206 using 3 components:
