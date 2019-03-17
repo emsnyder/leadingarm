@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("IO-AND-XXX")
+dataset.set_name("IO-AND-SiIV")
 dataset.verbose = True
 
 
@@ -37,19 +37,19 @@ def downsample_1d(myarr, factor):
 
 
 # -- Load the COS data (G130M and G160M if available) in ASCII format:
-G160M_filename = ""
+# G160M_filename = "/Users/efrazer/leadingarm/sightlines/IO-AND/RX_J0048.3+3941-G160M"
+#
+# res_g160m = 19000.
+#
+# wl_g160m, spec_g160m, err_g160m = np.loadtxt(G160M_filename, unpack=True)
+#
+# wl_g160m_rb = downsample_1d(wl_g160m, 3)
+# spec_g160m_rb = downsample_1d(spec_g160m, 3)
+# err_g160m_rb = downsample_1d(err_g160m, 3)
+#
+# dataset.add_data(wl_g160m_rb, spec_g160m_rb, 299792.458/res_g160m, err=err_g160m_rb, normalized=False)
 
-res_g160m = 19000.
-
-wl_g160m, spec_g160m, err_g160m = np.loadtxt(G160M_filename, unpack=True)
-
-wl_g160m_rb = downsample_1d(wl_g160m, 3)
-spec_g160m_rb = downsample_1d(spec_g160m, 3)
-err_g160m_rb = downsample_1d(err_g160m, 3)
-
-dataset.add_data(wl_g160m_rb, spec_g160m_rb, 299792.458/res_g160m, err=err_g160m_rb, normalized=False)
-
-G130M_filename = ""
+G130M_filename = "/Users/efrazer/leadingarm/sightlines/IO-AND/RX_J0048.3+3941-G130M"
 
 res_g130m = 16000.
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 600.0
 
 
 # -- Add the ions we want to fit
@@ -84,7 +84,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
-# dataset.add_line("SiIV_1393")
+dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
@@ -102,20 +102,35 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 90.0, 13.92, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 45.0, 13.92, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiII",  -370, 45.0, 12.92, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  -250, 45.0, 12.92, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  -180, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
+
 
 # SiIII
 # dataset.add_component("SiIII", 0., 90.0, 13.85, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIII", -370, 45.0, 12.85, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",  -250, 45.0, 12.92, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",  -180, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-# dataset.add_component("SiIV",  0., 90.0, 13.56, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  -370, 45.0, 12.56, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIV",  0., 90.0, 13.56, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -370, 45.0, 12.56, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -250, 45.0, 12.92, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -200, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -180, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -100, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
+
 
 # CII
 # dataset.add_component("CII",   0,  90.0, 14.96, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -520, 10.0, 13.2, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -450, 10.0, 13.0, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("CII",   -370, 45.0, 13.96, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -320, 20.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -240, 20.0, 13.3, var_z=1, var_b=1, var_N=1)
+
 
 # CIV
 # dataset.add_component("CIV",   0., 90.0, 14.12, var_z=1, var_b=1, var_N=1)
@@ -133,12 +148,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="IO-AND-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="IO-AND-SiIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("IO-AND-XXX.fit")
-dataset.save_cont_parameters_to_file("IO-AND-XXX.cont")
-dataset.save_fit_regions("IO-AND-XXX.reg")
+dataset.save_parameters("IO-AND-SiIV.fit")
+dataset.save_cont_parameters_to_file("IO-AND-SiIV.cont")
+dataset.save_fit_regions("IO-AND-SiIV.reg")
 
