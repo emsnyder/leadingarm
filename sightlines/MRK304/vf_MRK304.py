@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("MRK304-XXX")
+dataset.set_name("MRK304-CIV")
 dataset.verbose = True
 
 
@@ -87,7 +87,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
+dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 
 
@@ -105,8 +105,10 @@ dataset.velspan = 1000.0
 # dataset.add_component_velocity("SiII",  -350, 85.0, 13.03, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 170.0, 14.26, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", -350, 85.0, 13.26, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 60.0, 14.26, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -350, 30.0, 13.26, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -330, 30.0, 13.26, var_z=1, var_b=1, var_N=1)
+
 
 # SiIV
 # dataset.add_component("SiIV",  0., 170.0, 13.91, var_z=1, var_b=1, var_N=1)
@@ -117,8 +119,9 @@ dataset.velspan = 1000.0
 # dataset.add_component_velocity("CII",   -350, 85.0, 13.7, var_z=1, var_b=1, var_N=1)
 
 # CIV
-# dataset.add_component("CIV",   0., 170.0, 14.85, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   -350, 85.0, 13.85, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CIV",   0., 50.0, 14.85, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -350, 25.0, 13.85, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -300, 25.0, 13.85, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -132,12 +135,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="MRK304-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="MRK304-CIV.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("MRK304-XXX.fit")
-dataset.save_cont_parameters_to_file("MRK304-XXX.cont")
-dataset.save_fit_regions("MRK304-XXX.reg")
+dataset.save_parameters("MRK304-CIV.fit")
+dataset.save_cont_parameters_to_file("MRK304-CIV.cont")
+dataset.save_fit_regions("MRK304-CIV.reg")
 
