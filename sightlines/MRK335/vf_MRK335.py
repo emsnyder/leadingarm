@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("MRK335-XXX")
+dataset.set_name("MRK335-CIV")
 dataset.verbose = True
 
 
@@ -87,8 +87,8 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
-# dataset.add_line("CIV_1550")
+dataset.add_line("CIV_1548")
+dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -107,21 +107,27 @@ dataset.velspan = 1000.0
 # dataset.add_component_velocity("SiII",  -340, 100.0, 13.09, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 200.0, 13.83, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", -340, 100.0, 12.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 60.0, 13.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -250, 30.0, 12.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -300, 30.0, 12.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -340, 30.0, 12.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -410, 30.0, 12.83, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 200.0, 13.9, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  -340, 100.0, 12.9, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  200.0, 14.42, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -340, 100.0, 13.42, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  57.0, 15.2, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -410, 20.0, 13.42, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -340, 20.0, 13.42, var_z=1, var_b=1, var_N=1)
 
 # CIV
-# dataset.add_component("CIV",   0., 200.0, 14.62, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   -340, 100.0, 13.62, var_z=1, var_b=1, var_N=1)
-
+dataset.add_component("CIV",   0., 50.0, 14.2, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", -215, 10.0, 12.9, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", -250, 10.0, 13.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", -300, 40.0, 13.5, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV", -360, 10.0, 13.0, var_z=1, var_b=1, var_N=1)
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
@@ -134,12 +140,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="MRK335-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="MRK335-CIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("MRK335-XXX.fit")
-dataset.save_cont_parameters_to_file("MRK335-XXX.cont")
-dataset.save_fit_regions("MRK335-XXX.reg")
+dataset.save_parameters("MRK335-CIV.fit")
+dataset.save_cont_parameters_to_file("MRK335-CIV.cont")
+dataset.save_fit_regions("MRK335-CIV.reg")
 
