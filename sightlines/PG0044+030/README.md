@@ -1,4 +1,4 @@
-## PG0044+030 - Not yet complete
+## PG0044+030
 **Found good fits for the following ions:**
 
 C II using 3 components:
