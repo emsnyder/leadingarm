@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("LBQS0107-0235-XXX")
+dataset.set_name("LBQS0107-0235-CIV")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 1200.0
 
 
 # -- Add the ions we want to fit
@@ -87,8 +87,8 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
-# dataset.add_line("CIV_1548")
-# dataset.add_line("CIV_1550")
+dataset.add_line("CIV_1548")
+dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -105,20 +105,30 @@ dataset.velspan = 1000.0
 # dataset.add_component_velocity("SiII",  -252, 95.0, 13.05, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 190.0, 13.87, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", -252, 95.0, 12.87, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 50.0, 13.87, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",   -109, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",   -190, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",   -242, 10.0, 12.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII",   -280, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 190.0, 14.14, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  -252, 95.0, 13.14, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  190.0, 14.67, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -252, 95.0, 13.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  50.0, 14.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -190, 20.0, 13.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -262, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -305, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
+
 
 # CIV
-# dataset.add_component("CIV",   0., 190.0, 14.71, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   -252, 95.0, 13.71, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CIV",   0., 40.0, 13.7, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -70, 40.0, 13.7, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -109, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -190, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -242, 10.0, 12.8, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -280, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -132,12 +142,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="LBQS0107-0235-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="LBQS0107-0235-CIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("LBQS0107-0235-XXX.fit")
-dataset.save_cont_parameters_to_file("LBQS0107-0235-XXX.cont")
-dataset.save_fit_regions("LBQS0107-0235-XXX.reg")
+dataset.save_parameters("LBQS0107-0235-CIV.fit")
+dataset.save_cont_parameters_to_file("LBQS0107-0235-CIV.cont")
+dataset.save_fit_regions("LBQS0107-0235-CIV.reg")
 
