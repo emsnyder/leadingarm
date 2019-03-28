@@ -125,9 +125,9 @@ dataset.add_line("CIV_1550")
 # CIV
 dataset.add_component("CIV",   0., 40.0, 13.7, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   -70, 40.0, 13.7, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   -109, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   -190, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   -242, 10.0, 12.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -109, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -190, 10.0, 12.67, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -242, 10.0, 12.8, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   -280, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
 
 
