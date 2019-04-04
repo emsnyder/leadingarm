@@ -1,4 +1,4 @@
-## SDSSJ015530.02-085704.0 - Not yet complete
+## SDSSJ015530.02-085704.0
 **Found good fits for the following ions:**
 
 Ion using N components:

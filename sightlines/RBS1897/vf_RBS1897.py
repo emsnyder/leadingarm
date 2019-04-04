@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("RBS1897-CII")
+dataset.set_name("RBS1897-SiII")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 500.0
 
 
 # -- Add the ions we want to fit
@@ -80,13 +80,13 @@ dataset.velspan = 1000.0
 # Si II   1190.4158   2.502E-01
 # O I     1302
 
-# dataset.add_line("SiII_1260")
+dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-dataset.add_line("CII_1334")
+# dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 
@@ -103,8 +103,9 @@ dataset.add_line("CII_1334")
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 100.0, 13.6, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  135, 50.0, 12.6, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiII",  0., 40.0, 13.6, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  90, 30.0, 12.6, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiII",  135, 30.0, 12.6, var_z=1, var_b=1, var_N=1)
 
 # SiIII
 # dataset.add_component("SiIII", 0., 40.0, 13.57, var_z=1, var_b=1, var_N=1)
@@ -118,8 +119,9 @@ dataset.add_line("CII_1334")
 # dataset.add_component_velocity("SiIV",  135, 50.0, 12.48, var_z=1, var_b=1, var_N=1)
 
 # CII
-dataset.add_component("CII",   0,  100.0, 14.0, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CII",   135, 50.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  30.0, 14.7, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   80, 30.0, 13.2, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   135, 20.0, 13.2, var_z=1, var_b=1, var_N=1)
 
 # CIV
 # dataset.add_component("CIV",   0., 100.0, 14.2, var_z=1, var_b=1, var_N=1)
@@ -137,12 +139,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="RBS1897-CII.pdf")
+dataset.plot_fit(filename="RBS1897-SiII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("RBS1897-CII.fit")
-dataset.save_cont_parameters_to_file("RBS1897-CII.cont")
-dataset.save_fit_regions("RBS1897-CII.reg")
+dataset.save_parameters("RBS1897-SiII.fit")
+dataset.save_cont_parameters_to_file("RBS1897-SiII.cont")
+dataset.save_fit_regions("RBS1897-SiII.reg")
 
