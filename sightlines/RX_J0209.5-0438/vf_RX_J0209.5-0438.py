@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("RX_J0209.5-0438-XXX")
+dataset.set_name("RX_J0209.5-0438-FeII")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 700.0
 
 
 # -- Add the ions we want to fit
@@ -88,11 +88,12 @@ dataset.velspan = 1000.0
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
+dataset.add_line("FeII_1608")
 
 
 # NOTES ABOUT THE DETECTIONS:
 # log N(Si II) is an upper limit. Line is blended.
-
+# no Si III or blended?
 
 # -- Add MW and initial single components for each ion:
 #    add 1 to all the logN values for the MW 
@@ -103,21 +104,27 @@ dataset.velspan = 1000.0
 # dataset.add_component("SiII",  0., 100.0, 14.43, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiII",  -220, 50.0, 13.43, var_z=1, var_b=1, var_N=1)
 
-# SiIII
-# dataset.add_component("SiIII", 0., 100.0, -998.0, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", -220, 50.0, -999.0, var_z=1, var_b=1, var_N=1)
+# FeII
+dataset.add_component("FeII", 0., 50.0, 13.4, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("FeII", -180, 30.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("FeII", -240, 15.0, 13.0, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 100.0, 13.86, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  -220, 50.0, 12.86, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  100.0, 15.03, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -220, 50.0, 14.03, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CII",   0,  65.0, 15.03, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -165, 30.0, 14.03, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -110, 30.0, 14.03, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -220, 30.0, 14.03, var_z=1, var_b=1, var_N=1)
 
 # CIV
-# dataset.add_component("CIV",   0., 100.0, 14.3, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   -220, 50.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 40.0, 14.3, var_z=1, var_b=1, var_N=1)
+# # dataset.add_component_velocity("CIV",   -40, 20.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -90, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -120, 20.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -190, 20.0, 13.3, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -131,12 +138,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="RX_J0209.5-0438-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="RX_J0209.5-0438-FeII.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("RX_J0209.5-0438-XXX.fit")
-dataset.save_cont_parameters_to_file("RX_J0209.5-0438-XXX.cont")
-dataset.save_fit_regions("RX_J0209.5-0438-XXX.reg")
+dataset.save_parameters("RX_J0209.5-0438-FeII.fit")
+dataset.save_cont_parameters_to_file("RX_J0209.5-0438-FeII.cont")
+dataset.save_fit_regions("RX_J0209.5-0438-FeII.reg")
 
