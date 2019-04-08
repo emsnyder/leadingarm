@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("SDSSJ225738.20+134045.0-XXX")
+dataset.set_name("SDSSJ225738.20+134045.0-SiIV")
 dataset.verbose = True
 
 
@@ -84,7 +84,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
-# dataset.add_line("SiIV_1393")
+dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
@@ -101,16 +101,17 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 180.0, 14.61, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  -360, 90.0, 13.61, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 50.0, 14.61, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  -360, 30.0, 13.61, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 180.0, 14.63, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", -360, 90.0, 13.63, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 55.0, 13.9, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -360, 40.0, 13.63, var_z=1, var_b=1, var_N=1)
 
 # SiIV
-# dataset.add_component("SiIV",  0., 180.0, 14.76, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIV",  -360, 90.0, 13.76, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIV",  0., 40.0, 14.76, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -304, 20.0, 13.76, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIV",  -370, 20.0, 13.76, var_z=1, var_b=1, var_N=1)
 
 # CII
 # dataset.add_component("CII",   0,  180.0, 15.36, var_z=1, var_b=1, var_N=1)
@@ -132,12 +133,11 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="SDSSJ225738.20+134045.0-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="SDSSJ225738.20+134045.0-SiIV.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("SDSSJ225738.20+134045.0-XXX.fit")
-dataset.save_cont_parameters_to_file("SDSSJ225738.20+134045.0-XXX.cont")
-dataset.save_fit_regions("SDSSJ225738.20+134045.0-XXX.reg")
-
+dataset.save_parameters("SDSSJ225738.20+134045.0-SiIV.fit")
+dataset.save_cont_parameters_to_file("SDSSJ225738.20+134045.0-SiIV.cont")
+dataset.save_fit_regions("SDSSJ225738.20+134045.0-SiIV.reg")
