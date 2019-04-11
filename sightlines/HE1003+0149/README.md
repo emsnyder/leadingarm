@@ -1,12 +1,3 @@
-## HE1003+0149 - Not yet complete
-**Found good fits for the following ions:**
+## HE1003+0149 
 
-Ion using N components:
-```
-0 - MW
-1 - Leading Arm
-```
-
-
-**Other Notes:**
-
+No UV detections
