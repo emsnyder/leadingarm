@@ -1,12 +1,3 @@
-## PKS0932+02 - Not yet complete
-**Found good fits for the following ions:**
+## PKS0932+02
 
-Ion using N components:
-```
-0 - MW
-1 - Leading Arm
-```
-
-
-**Other Notes:**
-
+No UV detections
