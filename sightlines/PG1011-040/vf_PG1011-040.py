@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PG1011-040-XXX")
+dataset.set_name("PG1011-040-SiIII")
 dataset.verbose = True
 
 
@@ -83,7 +83,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
-# dataset.add_line("SiIII_1206")
+dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
@@ -102,12 +102,15 @@ dataset.velspan = 1000.0
 #    ordered by [ion, z, b, logN] then switches to fix z, b, or N during the fit
 
 # SiII
-# dataset.add_component("SiII",  0., 50.0, 13.44, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  208, 25.0, 12.44, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 60.0, 14.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  84, 25.0, 13.44, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  125, 25.0, 13.44, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  208, 15.0, 12.44, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 50.0, 13.57, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 208, 25.0, 12.57, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIII", 0., 40.0, 13.7, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 120, 25.0, 13.57, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 208, 25.0, 12.57, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 50.0, 13.74, var_z=1, var_b=1, var_N=1)
@@ -133,12 +136,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PG1011-040-XXX.pdf", max_rows=6)
+dataset.plot_fit(filename="PG1011-040-SiIII.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PG1011-040-XXX.fit")
-dataset.save_cont_parameters_to_file("PG1011-040-XXX.cont")
-dataset.save_fit_regions("PG1011-040-XXX.reg")
+dataset.save_parameters("PG1011-040-SiIII.fit")
+dataset.save_cont_parameters_to_file("PG1011-040-SiIII.cont")
+dataset.save_fit_regions("PG1011-040-SiIII.reg")
 
