@@ -1,4 +1,4 @@
-## PG1011-040 - Not yet complete
+## PG1011-040
 **Found good fits for the following ions:**
 
 Si II 1260 using 4 components:
