@@ -1,12 +1,3 @@
-## LBQS1019+0147 - Not yet complete
-**Found good fits for the following ions:**
+## LBQS1019+0147
 
-Ion using N components:
-```
-0 - MW
-1 - Leading Arm
-```
-
-
-**Other Notes:**
-
+No UV detections
