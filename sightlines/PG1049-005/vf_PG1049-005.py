@@ -121,8 +121,9 @@ dataset.add_line("CIV_1548")
 # dataset.add_component_velocity("CII",   250, 20.0, 14.0, var_z=1, var_b=1, var_N=1)
 
 # CIV
-dataset.add_component("CIV",   0., 180.0, 14.59, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   200, 90.0, 13.59, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CIV",   0., 75.0, 13.59, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   200, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   250, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive

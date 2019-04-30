@@ -21,6 +21,7 @@ C IV 1548 using 2 components:
 ``` 
 0 - MW
 1 - Leading Arm
+2 - Leading Arm
 ```
 
 **Other Notes:**
