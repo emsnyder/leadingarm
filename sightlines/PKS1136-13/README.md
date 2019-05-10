@@ -1,7 +1,7 @@
-## PKS1136-13 - Not yet complete
+## PKS1136-13
 **Found good fits for the following ions:**
 
-Ion using N components:
+C II 1334 using 2 components:
 ```
 0 - MW
 1 - Leading Arm
