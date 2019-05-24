@@ -15,9 +15,12 @@ Use _v2 for fits.
 Si III
 ``` 
 0 - MW
-1 - Leading Arm
+1 - MW
+2 - MW
+3 - Leading Arm
+4 - Leading Arm
 
-Use the plain SiIII fits.
+Use _v2 SiIII fits.
 ```
 
 Si IV - no detection

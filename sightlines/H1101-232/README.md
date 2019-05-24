@@ -19,11 +19,11 @@ Can't get small component on right side to fit
 ```
 
 
-Si IV 1393, using 3 components
+Si IV 1393, 1402 using 3 components
 ``` 
 0 - MW
-1 - Leading Arm?
-2 - Leading Arm but with huge error
+1 - Leading Arm ?
+2 - Leading Arm (small with large error)
 ```
 
 **Other Notes:**

@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 800.0
 
 
 # -- Add the ions we want to fit
@@ -85,7 +85,7 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
 dataset.add_line("SiIV_1393")
-# dataset.add_line("SiIV_1402")
+dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
