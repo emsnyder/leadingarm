@@ -9,10 +9,16 @@ Si II using 5 components:
 3 - Leading Arm
 4 - Leading Arm
 
-Use _v2 for fits
+Use _v2 for fits.
 ```
 
-Si III - needs work
+Si III
+``` 
+0 - MW
+1 - Leading Arm
+
+Use the plain SiIII fits.
+```
 
 Si IV - no detection
 
