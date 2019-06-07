@@ -11,6 +11,8 @@ Si III 1206 using 2 components:
 ``` 
 0 - MW
 1 - Leading Arm (very small with large error)
+
+tried using three components but cannot get a good fit
 ```
 
 **Other Notes:**

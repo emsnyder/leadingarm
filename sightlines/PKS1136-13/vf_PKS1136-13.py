@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PKS1136-13-SiIII")
+dataset.set_name("PKS1136-13-SiIII_3")
 dataset.verbose = True
 
 
@@ -51,7 +51,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 800.0
+dataset.velspan = 1000.0
 
 
 # -- Add the ions we want to fit
@@ -91,9 +91,9 @@ dataset.add_line("SiIII_1206")
 # dataset.add_component_velocity("SiII",  180, 35.0, 12.57, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-dataset.add_component("SiIII", 0., 50.0, 13.36, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 165, 15.0, 12.36, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIII", 195, 15.0, 12.36, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIII", 0., 50.0, 14.1, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 165, 10.0, 13.1, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 195, 15.0, 13.1, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 70.0, 13.77, var_z=1, var_b=1, var_N=1)
@@ -119,12 +119,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PKS1136-13-SiIII.pdf", max_rows=6)
+dataset.plot_fit(filename="PKS1136-13-SiIII_3.pdf", max_rows=6)
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PKS1136-13-SiIII.fit")
-dataset.save_cont_parameters_to_file("PKS1136-13-SiIII.cont")
-dataset.save_fit_regions("PKS1136-13-SiIII.reg")
+dataset.save_parameters("PKS1136-13-SiIII_3.fit")
+dataset.save_cont_parameters_to_file("PKS1136-13-SiIII_3.cont")
+dataset.save_fit_regions("PKS1136-13-SiIII_3.reg")
 
