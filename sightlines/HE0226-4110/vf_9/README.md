@@ -15,12 +15,11 @@ CIV 1548 using 5 components:
 ```
 0 - MW
 1 - Stream 1
-2 - Stream 2 (very small and uncertain)
-3 - Stream 3 (very small and uncertain)
+2 - Stream 2 
+3 - Stream 3 
 4 - Stream 4 (very small and uncertain)
 ```
-Continuum is a bit wonky on the right side.
-
+Use the '_new' fits.
 
 Si III 1206 using 4 components:
 ```

@@ -140,6 +140,7 @@ dataset.add_component_velocity("CIV",   80, 77.5, 13.88, var_z=1, var_b=1, var_N
 dataset.add_component_velocity("CIV",   130, 10.0, 13.28, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   175, 10.5, 13.66, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   215, 25.5, 13.99, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   250, 10.5, 13.2, var_z=1, var_b=1, var_N=1)
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
