@@ -10,7 +10,7 @@ Si II using 5 components:
 4 - Leading Arm
 ```
 
-Si III
+Si III 1206 
 ``` 
 0 - MW
 1 - MW

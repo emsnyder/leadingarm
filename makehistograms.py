@@ -288,12 +288,12 @@ plt.savefig('hist-b-LA.pdf')
 plt.close()
 
 
-fig = plt.figure(figsize=(8,6))
+fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
 n_ms, bins_ms, patches_ms = plt.hist((blist_ms_lo, blist_ms_hi), bins=np.arange(10, 80, binwidth),
-                                      color=['orange', 'deepskyblue'], alpha=0.7, rwidth=0.8, align='mid',
-                                      label=['Low Ions (O I, Si II, C II), N={}'.format(len(blist_ms_lo)),
-                                             'High Ions (Si IV, C IV), N={}'.format(len(blist_ms_hi))])
+                                     color=['orange', 'deepskyblue'], alpha=0.7, rwidth=0.8, align='mid',
+                                     label=['Low Ions (O I, Si II, C II), N={}'.format(len(blist_ms_lo)),
+                                            'High Ions (Si IV, C IV), N={}'.format(len(blist_ms_hi))])
 kstest_ms_b = stats.ks_2samp(blist_ms_hi, blist_ms_lo)
 plt.text(49, 4.3, 'K-S Statistic p-value={:6.5f}'.format(kstest_ms_b[1]))
 plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
@@ -311,15 +311,15 @@ plt.close()
 # Make the Column Density Plots now
 
 binwidth = 0.25
-fig = plt.figure(figsize=(8,6))
+fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
 n_la_ncol, bins_la_ncol, patches_la_ncol = plt.hist((nlist_la_lo, nlist_la_med, nlist_la_hi),
-                                                     bins=np.arange(12.25, 14.5, binwidth),
-                                                     color=['orange', 'deeppink', 'deepskyblue'],
-                                                     align='mid', histtype='bar', rwidth=0.8, alpha=0.7,
-                                                     label=['Si II, N={}'.format(len(nlist_la_lo)),
-                                                            'Si III, N={}'.format(len(nlist_la_med)),
-                                                            'Si IV, N={}'.format(len(nlist_la_hi))])
+                                                    bins=np.arange(12.25, 14.5, binwidth),
+                                                    color=['orange', 'deeppink', 'deepskyblue'],
+                                                    align='mid', histtype='bar', rwidth=0.8, alpha=0.7,
+                                                    label=['Si II, N={}'.format(len(nlist_la_lo)),
+                                                           'Si III, N={}'.format(len(nlist_la_med)),
+                                                           'Si IV, N={}'.format(len(nlist_la_hi))])
 plt.xlabel('Column Density ' + r'$[\log(N/cm^{-2})]$', fontsize=16)
 plt.xticks(bins_la_ncol)
 plt.ylabel('# of components', fontsize=16)
@@ -333,15 +333,15 @@ plt.close()
 
 
 binwidth = 0.25
-fig = plt.figure(figsize=(8,6))
+fig = plt.figure(figsize=(8, 6))
 ax = fig.add_subplot(111)
 n_ms_ncol, bins_ms_ncol, patches_ms_ncol = plt.hist((nlist_ms_lo, nlist_ms_med, nlist_ms_hi),
-                                                     bins=np.arange(12.25, 14.0, binwidth),
-                                                     color=['orange', 'deeppink', 'deepskyblue'],
-                                                     align='mid', histtype='bar', rwidth=0.8, alpha=0.7,
-                                                     label=['Si II, N={}'.format(len(nlist_ms_lo)),
-                                                            'Si III, N={}'.format(len(nlist_ms_med)),
-                                                            'Si IV, N={}'.format(len(nlist_ms_hi))])
+                                                    bins=np.arange(12.25, 14.0, binwidth),
+                                                    color=['orange', 'deeppink', 'deepskyblue'],
+                                                    align='mid', histtype='bar', rwidth=0.8, alpha=0.7,
+                                                    label=['Si II, N={}'.format(len(nlist_ms_lo)),
+                                                           'Si III, N={}'.format(len(nlist_ms_med)),
+                                                           'Si IV, N={}'.format(len(nlist_ms_hi))])
 plt.xlabel('Column Density ' + r'$[\log(N/cm^{-2})]$', fontsize=16)
 plt.xticks(bins_ms_ncol)
 plt.ylabel('# of components', fontsize=16)
