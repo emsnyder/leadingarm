@@ -8,8 +8,6 @@ Si II using 5 components:
 2 - Leading Arm
 3 - Leading Arm
 4 - Leading Arm
-
-Use _v2 for fits.
 ```
 
 Si III
@@ -19,8 +17,6 @@ Si III
 2 - MW
 3 - Leading Arm
 4 - Leading Arm
-
-Use _v2 SiIII fits.
 ```
 
 Si IV - no detection
