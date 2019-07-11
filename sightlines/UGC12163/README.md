@@ -1,4 +1,4 @@
-## UGC12163 - Not yet complete
+## UGC12163
 **Found good fits for the following ions:**
 
 C II 1334 using 6 components:
