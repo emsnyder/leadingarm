@@ -4,8 +4,8 @@
 C II 1334 using 4 components:
 ```
 0 - MW
-1 - Stream?
-2 - Stream?
+1 - Stream
+2 - Stream
 3 - Stream 
 ```
 
