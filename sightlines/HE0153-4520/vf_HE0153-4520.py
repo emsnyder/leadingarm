@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 800.0
 
 
 # -- Add the ions we want to fit
@@ -104,17 +104,16 @@ dataset.add_line("CIV_1550")
 
 # SiII
 # dataset.add_component("SiII",  0., 33.0, 13.98, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  60, 10.0, 12.38, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  86, 10.0, 12.38, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  130, 15.0, 12.98, var_z=1, var_b=1, var_N=1)
-# # dataset.add_component_velocity("SiII",  160, 10.0, 11.98, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  210, 40.0, 12.98, var_z=1, var_b=1, var_N=1)
-
+# dataset.add_component_velocity("SiII",  -50, 10.0, 12.38, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  38, 10.0, 12.38, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  95, 15.0, 12.98, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  145, 10.0, 12.98, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 90.0, 13.83, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 120, 25.0, 12.83, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 180, 25.0, 12.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiIII", 0., 55.0, 13.83, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 80, 15., 12.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 120, 30., 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 180, 20, 12.87, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 90.0, 13.72, var_z=1, var_b=1, var_N=1)
