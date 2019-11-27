@@ -30,4 +30,4 @@ Si IV 1393 (G130M data only) using 6 components:
 
 **Other Notes:**
 
-Can't get a great fit for CII.
+Can't get a great fit for CII. Hard to distiguish between AND and STREAM components...
