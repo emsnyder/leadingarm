@@ -1,0 +1,12 @@
+#comp   ion   redshift               b (km/s)       log(N/cm^-2)
+  0     SiIV  -0.000027 0.000005     28.52   2.50    13.641 0.037
+  1     SiIV  0.000347 0.000028    148.79   9.16    13.909 0.030
+
+
+
+# Python script version:
+# The commands below can be copied directly to a script.
+# dataset.redshift = 0.000000.
+# dataset.add_component_velocity('SiIV', -8.2, 28.5, 13.6)
+# dataset.add_component_velocity('SiIV', 103.9, 148.8, 13.9)
+
