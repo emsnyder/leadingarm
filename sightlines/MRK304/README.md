@@ -15,11 +15,11 @@ Si III 1206 using 3 components:
 Looks like there could be a component at -200km/s but can't get the contiunuum correct.
 ```
 
-C IV 1548 using 2 components:
+C IV 1550 using 2 components:
 ```
 0 - MW
 1 - Stream
-Also looks like there could be another component around -200 km/s but can't get it to fit.
+2 - Stream
 ```
 
 **Other Notes:**
