@@ -14,18 +14,16 @@ Si III 1206 using 5 components:
 0 - MW
 1 - Stream 1
 2 - Stream 2
-3 - Stream 3 (very small with large error)
-4 - Stream 4
+3 - Stream 4
 ```
 
-C IV 1548, 1550 using 6 components:
+C IV 1548, 1550 using 5 components:
 ```
 0 - MW 1
 1 - Stream 1 (? Not sure if this is really a part of the stream)
 2 - MW 2 (on right side, large error)
 3 - Stream 2
 4 - Stream 3 (large component that's probably a blend of many smaller ones)
-5 - Stream 4
 ```
 
 
