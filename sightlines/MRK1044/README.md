@@ -5,8 +5,6 @@ C II 1334 using 4 components:
 ```
 0 - MW
 1 - Stream 1
-2 - Stream 2 *very large error*
-3 - Stream 3
 ```
 
 Si III 1206 using 3 components:

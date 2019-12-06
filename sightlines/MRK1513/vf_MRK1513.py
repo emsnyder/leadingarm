@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 800.0
 
 
 # -- Add the ions we want to fit
@@ -122,10 +122,11 @@ dataset.add_line("CIV_1550")
 
 # CIV
 dataset.add_component("CIV",   0., 36.0, 14.54, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   50, 50.0, 14.04, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   30, 50.0, 14.04, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   -200, 10.0, 13.04, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("CIV",   -280, 15.0, 13.5, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   -308, 20.0, 14.04, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CIV",   -308, 20.0, 13.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   -330, 10.0, 13.5, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
