@@ -1,4 +1,5 @@
-## SDSSJ2345...
+## SDSSJ234500.43-005936.0
+
 **Found good fits for the following ions:**
 
 C II 1334 using 3 components:
@@ -12,8 +13,8 @@ Si II 1260 using 4 components:
 ```
 0 - MW
 1 - Stream 1
-2 - Stream 2
-3 - Stream 3
+2 - Blend with SII 1259
+3 - Stream 2
 ```
 Si III 1206 using 4 components:
 ```
@@ -26,9 +27,7 @@ Looks like there should be a component at -160km/s but can't fit it.
 Si IV 1393, 1402 using 4 components:
 ```
 0 - MW
-1 - Stream  1 (very large error)
-2 - Stream  2 (very large error)
-3 - Stream  3
+3 - Stream  1
 ```
 C IV 1548, 1550 using 3 components:
 ```
