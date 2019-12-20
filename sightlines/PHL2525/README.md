@@ -4,10 +4,9 @@
 C II 1334 using 4 components:
 ``` 
 0 - MW
-1 - Stream 1 
-2 - Stream 2 
-3 - Stream 3 
-All fits have pretty large error but visually look OK.
+1 - Right side of MW (taken out)
+2 - Stream 1
+3 - Stream 2 
 ```
 
 Si III 1206 using 4 components:

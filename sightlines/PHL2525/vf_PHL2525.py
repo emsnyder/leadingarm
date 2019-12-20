@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PHL2525-SiIII")
+dataset.set_name("PHL2525-CiII")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 800.0
+dataset.velspan = 1000.0
 
 
 # -- Add the ions we want to fit
@@ -83,10 +83,10 @@ dataset.velspan = 800.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
-dataset.add_line("SiIII_1206")
+# dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-# dataset.add_line("CII_1334")
+dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 
@@ -105,10 +105,10 @@ dataset.add_line("SiIII_1206")
 # dataset.add_component_velocity("SiII",  -256, 80.0, 13.38, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-dataset.add_component_velocity("SiIII", 10., 160.0, 13.7, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIII", 50, 30.0, 13.1, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIII", -205, 30.0, 13.1, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIII", -145, 20.0, 13.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 10., 160.0, 13.7, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", 50, 30.0, 13.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -205, 30.0, 13.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIII", -145, 20.0, 13.1, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIII", -120, 20.0, 12.9, var_z=1, var_b=1, var_N=1)
 
 # SiIV
@@ -116,10 +116,11 @@ dataset.add_component_velocity("SiIII", -145, 20.0, 13.1, var_z=1, var_b=1, var_
 # dataset.add_component_velocity("SiIV",  -256, 80.0, 13.19, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  80.0, 15.38, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -215, 30.0, 14.38, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -190, 30.0, 14.38, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   -145, 30.0, 14.38, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CII",   0,  80.0, 14.8, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   50, 30.0, 14.3, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   -145, 10.0, 13.8, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   -190, 10.0, 13.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -215, 10.0, 13.8, var_z=1, var_b=1, var_N=1)
 
 
 # CIV
@@ -139,12 +140,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PHL2525-SiIII.pdf")
+dataset.plot_fit(filename="PHL2525-CII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PHL2525-SiIII.fit")
-dataset.save_cont_parameters_to_file("PHL2525-SiIII.cont")
-dataset.save_fit_regions("PHL2525-SiIII.reg")
+dataset.save_parameters("PHL2525-CII.fit")
+dataset.save_cont_parameters_to_file("PHL2525-CII.cont")
+dataset.save_fit_regions("PHL2525-CII.reg")
 
