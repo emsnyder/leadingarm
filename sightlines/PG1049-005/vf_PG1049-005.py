@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PG1049-005-CIV")
+dataset.set_name("PG1049-005-CII")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 1000.0
+dataset.velspan = 800.0
 
 
 # -- Add the ions we want to fit
@@ -86,8 +86,8 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-# dataset.add_line("CII_1334")
-dataset.add_line("CIV_1548")
+dataset.add_line("CII_1334")
+# dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 
 
@@ -115,20 +115,23 @@ dataset.add_line("CIV_1548")
 # dataset.add_component_velocity("SiIV",  200, 90.0, 13.22, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  30.0, 14.7, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   75, 15.0, 14.2, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   145, 15.0, 14.0, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   250, 20.0, 14.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CII",   0,  30.0, 14.7, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   75, 15.0, 14.2, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   140, 30.0, 14.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   180, 15.0, 14.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   180, 15.0, 14.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   250, 20.0, 14.0, var_z=1, var_b=1, var_N=1)
 
 # CIV
-dataset.add_component("CIV",   0., 75.0, 13.59, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   200, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   250, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 75.0, 13.59, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   200, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   250, 30.0, 13.3, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
 
+# dataset.norm_method = 'spline'
 dataset.cheb_order = 1
 
 dataset.prepare_dataset(norm=True, mask=True)
@@ -137,12 +140,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PG1049-005-CIV.pdf", max_rows=6)
+dataset.plot_fit(filename="PG1049-005-CII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PG1049-005-CIV.fit")
-dataset.save_cont_parameters_to_file("PG1049-005-CIV.cont")
-dataset.save_fit_regions("PG1049-005-CIV.reg")
+dataset.save_parameters("PG1049-005-CII.fit")
+dataset.save_cont_parameters_to_file("PG1049-005-CII.cont")
+dataset.save_fit_regions("PG1049-005-CII.reg")
 
