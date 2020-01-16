@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("SDSSJ095915.60+050355.0-CIV")
+dataset.set_name("SDSSJ095915.60+050355.0-SiIII")
 dataset.verbose = True
 
 
@@ -79,9 +79,9 @@ dataset.velspan = 1000.0
 # Si II   1190.4158   2.502E-01
 # O I     1302
 
-# dataset.add_line("SiIII_1206")
-dataset.add_line("CIV_1548")
-dataset.add_line("CIV_1550")
+dataset.add_line("SiIII_1206")
+# dataset.add_line("CIV_1548")
+# dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -97,18 +97,18 @@ dataset.add_line("CIV_1550")
 
 
 # SiIII
-# dataset.add_component("SiIII", 0., 70.0, 14.0, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 289, 20.0, 12.46, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIII", 0., 70.0, 14.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 289, 20.0, 12.46, var_z=1, var_b=1, var_N=1)
 
 # CIV
-dataset.add_component("CIV",   0., 70.0, 14.52, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CIV",   270, 50.0, 13.2, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   290, 50.0, 13.2, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 70.0, 14.52, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   290, 50.0, 13.2, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
 
+dataset.norm_method = 'spline'
 dataset.cheb_order = 1
 
 dataset.prepare_dataset(norm=True, mask=True)
@@ -117,12 +117,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="SDSSJ095915.60+050355.0-CIV.pdf", max_rows=6)
+# dataset.plot_fit(filename="SDSSJ095915.60+050355.0-SiIII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("SDSSJ095915.60+050355.0-CIV.fit")
-dataset.save_cont_parameters_to_file("SDSSJ095915.60+050355.0-CIV.cont")
-dataset.save_fit_regions("SDSSJ095915.60+050355.0-CIV.reg")
+dataset.save_parameters("SDSSJ095915.60+050355.0-SiIII.fit")
+dataset.save_cont_parameters_to_file("SDSSJ095915.60+050355.0-SiIII.cont")
+dataset.save_fit_regions("SDSSJ095915.60+050355.0-SiIII.reg")
 
