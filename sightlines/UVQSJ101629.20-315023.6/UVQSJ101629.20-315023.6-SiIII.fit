@@ -1,14 +1,14 @@
 #comp   ion   redshift               b (km/s)       log(N/cm^-2)
-  0    SiIII  0.000099 0.000006     43.07   3.33    14.216 0.110
-  1    SiIII  0.000520 0.000045     72.19  30.59    13.056 0.137
-  2    SiIII  0.000793 0.000006     17.63   3.50    12.884 0.081
+  0    SiIII  0.000116 0.000008     38.90   7.81    14.613 0.531
+  1    SiIII  0.000519 0.000019     13.74  10.45    12.552 0.166
+  2    SiIII  0.000745 0.000016     29.47   7.61    13.020 0.087
 
 
 
 # Python script version:
 # The commands below can be copied directly to a script.
 # dataset.redshift = 0.000000.
-# dataset.add_component_velocity('SiIII', 29.7, 43.1, 14.2)
-# dataset.add_component_velocity('SiIII', 155.8, 72.2, 13.1)
-# dataset.add_component_velocity('SiIII', 237.8, 17.6, 12.9)
+# dataset.add_component_velocity('SiIII', 34.9, 38.9, 14.6)
+# dataset.add_component_velocity('SiIII', 155.6, 13.7, 12.6)
+# dataset.add_component_velocity('SiIII', 223.3, 29.5, 13.0)
 
