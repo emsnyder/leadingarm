@@ -92,9 +92,10 @@ dataset.add_line("SiIII_1206")
 # dataset.add_component_velocity("SiII",  250, 30.0, 13.72, var_z=1, var_b=1, var_N=1)
 
 # SiIII
-# dataset.add_component("SiIII", 0., 50.0, 14.35, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiIII", 200, 40.0, 13.35, var_z=1, var_b=1, var_N=1)
-# # dataset.add_component_velocity("SiIII", 240, 40.0, 13.35, var_z=1, var_b=1, var_N=1)
+dataset.add_component("SiIII", 0., 50.0, 14.35, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 200, 40.0, 13.35, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 240, 40.0, 13.35, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII", 240, 40.0, 13.35, var_z=1, var_b=1, var_N=1)
 
 # SiIV
 # dataset.add_component("SiIV",  0., 140.0, 14.37, var_z=1, var_b=1, var_N=1)
@@ -111,6 +112,7 @@ dataset.add_line("SiIII_1206")
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
 
+dataset.norm_method = 'spline'
 dataset.cheb_order = 1
 
 dataset.prepare_dataset(norm=True, mask=True)
@@ -119,7 +121,7 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="ESO265-G23-SiIII_new.pdf")
+# dataset.plot_fit(filename="ESO265-G23-SiIII_new.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
