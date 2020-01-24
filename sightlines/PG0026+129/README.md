@@ -7,7 +7,7 @@ C II 1334 using 5 components:
 1 - Stream 1 (largish error)
 2 - Stream 2 
 3 - Stream 3
-4 - Stream 4
+4 - Blend with Ly-a
 ```
 
 Si III 1206 using 4 components:

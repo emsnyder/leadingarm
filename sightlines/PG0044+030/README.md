@@ -13,7 +13,7 @@ Si III 1206 using 4 components:
 0 - MW
 1 - Stream 1
 2 - Stream 2
-3 - Stream 3
+3 - Blend of Ly-B
 ```
 
 **Other Notes:**
