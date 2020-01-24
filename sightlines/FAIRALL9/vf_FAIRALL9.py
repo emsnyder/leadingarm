@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("FAIRALL9-CIV")
+dataset.set_name("FAIRALL9-CII")
 dataset.verbose = True
 
 
@@ -87,9 +87,9 @@ dataset.velspan = 1000.0
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-# dataset.add_line("CII_1334")
-dataset.add_line("CIV_1548")
-dataset.add_line("CIV_1550")
+dataset.add_line("CII_1334")
+# dataset.add_line("CIV_1548")
+# dataset.add_line("CIV_1550")
 
 
 # NOTES ABOUT THE DETECTIONS:
@@ -118,19 +118,23 @@ dataset.add_line("CIV_1550")
 # dataset.add_component_velocity("SiIV",  184, 50.0, 13.02, var_z=1, var_b=1, var_N=1)
 
 # CII
-# dataset.add_component("CII",   0,  160.0, 15.88, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("CII",   184, 80.0, 14.88, var_z=1, var_b=1, var_N=1)
+dataset.add_component("CII",   0,  45.0, 14.7, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   50, 30.0, 14.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   100, 30.0, 14.0, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   184, 50.0, 14.88, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("CII",   250, 10.0, 13.88, var_z=1, var_b=1, var_N=1)
 
 # CIV
-dataset.add_component("CIV",   0., 30.0, 14.49, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV", 60, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV", 106, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CIV",   184, 50.0, 13.49, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("CIV",   0., 30.0, 14.49, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV", 60, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV", 106, 20.0, 13.0, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CIV",   184, 50.0, 13.49, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
 
+# dataset.norm_method = 'spline'
 dataset.cheb_order = 1
 
 dataset.prepare_dataset(norm=True, mask=True)
@@ -139,12 +143,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="FAIRALL9-CIV.pdf")
+dataset.plot_fit(filename="FAIRALL9-CII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("FAIRALL9-CIV.fit")
-dataset.save_cont_parameters_to_file("FAIRALL9-CIV.cont")
-dataset.save_fit_regions("FAIRALL9-CIV.reg")
+dataset.save_parameters("FAIRALL9-CII.fit")
+dataset.save_cont_parameters_to_file("FAIRALL9-CII.cont")
+dataset.save_fit_regions("FAIRALL9-CII.reg")
 

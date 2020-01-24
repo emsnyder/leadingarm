@@ -20,6 +20,22 @@ Si IV 1402 using 4 components:
 3 - Stream 3
 ```
 
+C II 1334 using 5 components:
+``` 
+0 - MW
+1 - Stream 1
+2 - MW?
+3 - Stream 2
+4 - CII*
+```
+
+C IV 1548, 1550 using 4 components:
+``` 
+0 - MW
+1 - MW?
+2 - Stream 1
+3 - Stream 2
+```
+
 
 **Other Notes:**
-Can't get a good fit to CIV due to weird continuum levels.
