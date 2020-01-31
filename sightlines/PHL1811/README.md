@@ -1,6 +1,15 @@
 ## PHL1811 - Not yet complete
 **Found good fits for the following ions:**
 
+C II 1334 using 4 components:
+``` 
+0 - MW
+1 - Stream
+2 - Stream
+3 - Stream
+```
+
+
 Si II 1190, 1193 using 4 components:
 ```
 0 - MW
