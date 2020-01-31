@@ -1,7 +1,6 @@
 import glob
 import os
 import numpy as np
-#import pandas as pd
 import pickle
 from astropy.io import fits
 
@@ -119,7 +118,15 @@ def get_dir(name):
 
     direc = bigtable['region'][sel]
 
-    return direc
+    if 'LA' in direc[0]:
+        dirnew = 'LA'
+    elif 'MS' in direc[0]:
+        dirnew = 'MS'
+    else:
+        print(direc)
+        dirnew = direc
+
+    return dirnew
 
 
 # -----------------------------------------------
@@ -143,11 +150,13 @@ def extract_fits(input_path, fitdict):
             # don't save the 0 comp -- always the MW
             if line.split()[0] == '0':
                 continue
-            # don't save the component if b < b_err
-            if float(line.split()[4]) < float(line.split()[5]):
+            # don't save the component if b_err > 1.5*b
+            if float(line.split()[5]) > 1.5*float(line.split()[4]):
+                ion.append(line.split()[1])
                 continue
-            # don't save the component if b < 10 km/s
+            # don't save the component if b < 5 km/s
             if float(line.split()[4]) < 5:
+                ion.append(line.split()[1])
                 continue
             compnum.append(int(line.split()[0]))
             ion.append(line.split()[1])
@@ -158,70 +167,79 @@ def extract_fits(input_path, fitdict):
             n.append(float(line.split()[6]))
             n_err.append(float(line.split()[7]))
 
-    if compnum == []:
+    # if compnum == []:
+    #
+    #     return
+    #
+    # else:
 
-        return
+    wave = []
+    flux = []
+    flux_err = []
+    bestfit = []
+    masked = []
+    regfile = open(input_path.strip('.fit') + '.reg', 'r')
+    for line in regfile:
+        line = line.strip()
+        if ('#' not in line) and (line != ''):
+            wave.append(float(line.split()[0]))
+            flux.append(float(line.split()[1]))
+            flux_err.append(float(line.split()[2]))
+            bestfit.append(float(line.split()[3]))
+            masked.append(int(line.split()[4]))
 
-    else:
+    # compute S/N
+    sn = measure_sn(name, ion[0], flux)
 
-        wave = []
-        flux = []
-        flux_err = []
-        bestfit = []
-        masked = []
-        regfile = open(input_path.strip('.fit') + '.reg', 'r')
-        for line in regfile:
-            line = line.strip()
-            if ('#' not in line) and (line != ''):
-                wave.append(float(line.split()[0]))
-                flux.append(float(line.split()[1]))
-                flux_err.append(float(line.split()[2]))
-                bestfit.append(float(line.split()[3]))
-                masked.append(int(line.split()[4]))
+    # match name in datafile to get direction
+    direc = get_dir(name)
+    print(direc)
 
-        # compute S/N
-        sn = measure_sn(name, ion[0], flux)
+    compdict = {'component number': compnum,
+                'redshift': z,
+                'redshift error': z_err,
+                'b value': b,
+                'b value error': b_err,
+                'column density': n,
+                'column density error': n_err
+                }
 
-        # match name in datafile to get direction
-        direc = get_dir(name)
+    iondict = {ion[0]: {'S/N': sn,
+                        'direction': direc,
+                        'wavelength': wave,
+                        'flux': flux,
+                        'flux error': flux_err,
+                        'best fit line': bestfit,
+                        'masked regions': masked,
+                        'components': compdict
+                        }
+               }
 
-        compdict = {'component number': compnum,
-                    'redshift': z,
-                    'redshift error': z_err,
-                    'b value': b,
-                    'b value error': b_err,
-                    'column density': n,
-                    'column density error': n_err
-                    }
+    fitdict[name].update(iondict)
+    fitdict[name].update({'direction': direc})
 
-        iondict = {ion[0]: {'S/N': sn,
-                            'direction': direc,
-                            'wavelength': wave,
-                            'flux': flux,
-                            'flux error': flux_err,
-                            'best fit line': bestfit,
-                            'masked regions': masked,
-                            'components': compdict
-                            }
-                   }
-
-        fitdict[name].update(iondict)
-
-        return fitdict
+    # import pdb
+    # pdb.set_trace()
+    #
+    # return fitdict
 
 
 # -----------------------------------------------
 def main():
 
-    fitlist = glob.glob(os.path.join(FITDIR, '*', '*.fit'))
+    fitlist1 = glob.glob(os.path.join(FITDIR, '*', '*I.fit'))
+    fitlist2 = glob.glob(os.path.join(FITDIR, '*', '*V.fit'))
+
+    fitlist = fitlist1 + fitlist2
 
     fitdict = set_up_dict(fitlist)
 
     for myfile in fitlist:
-        popdict = extract_fits(myfile, fitdict)
+        print(myfile)
+        extract_fits(myfile, fitdict)
 
-    with open('fitdict.pickle', 'wb') as handle:
-        pickle.dump(popdict, handle, protocol=pickle.HIGHEST_PROTOCOL)
+    with open('fitdict_test.pickle', 'wb') as handle:
+        pickle.dump(fitdict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # df = pd.DataFrame(popdict)
     # df.to_latex('fitdict.tex', na_rep='--')
