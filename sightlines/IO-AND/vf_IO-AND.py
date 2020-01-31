@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("IO-AND-SiIV_new")
+dataset.set_name("IO-AND-SiIV")
 dataset.verbose = True
 
 
@@ -63,7 +63,7 @@ dataset.add_data(wl_g130m_rb, spec_g130m_rb, 299792.458/res_g130m, err=err_g130m
 
 
 # -- Change the width of velocity search region
-dataset.velspan = 500.0
+dataset.velspan = 650.0
 
 
 # -- Add the ions we want to fit
@@ -85,7 +85,7 @@ dataset.velspan = 500.0
 # dataset.add_line("SiII_1190")
 # dataset.add_line("SiIII_1206")
 dataset.add_line("SiIV_1393")
-# dataset.add_line("SiIV_1402")
+dataset.add_line("SiIV_1402")
 # dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
@@ -117,12 +117,12 @@ dataset.add_line("SiIV_1393")
 # SiIV
 dataset.add_component("SiIV",  0., 90.0, 13.56, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("SiIV",  -50, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  -80, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  -80, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("SiIV",  -115, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("SiIV",  -160, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  -200, 20.0, 12.92, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("SiIV",  -227, 45.0, 12.92, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SiIV",  -350, 20.0, 12.56, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiIV",  -350, 20.0, 12.56, var_z=1, var_b=1, var_N=1)
 dataset.add_component_velocity("SiIV",  -377, 20.0, 12.56, var_z=1, var_b=1, var_N=1)
 
 # CII
@@ -142,6 +142,7 @@ dataset.add_component_velocity("SiIV",  -377, 20.0, 12.56, var_z=1, var_b=1, var
 # -- Prepare the dataset: This will prompt the user for interactive
 #    masking and normalization, as well as initiating the Parameters:
 
+dataset.norm_method = 'spline'
 dataset.cheb_order = 1
 
 dataset.prepare_dataset(norm=True, mask=True)
@@ -150,12 +151,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="IO-AND-SiIV_new.pdf")
+# dataset.plot_fit(filename="IO-AND-SiII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("IO-AND-SiIV_new.fit")
-dataset.save_cont_parameters_to_file("IO-AND-SiIV_new.cont")
-dataset.save_fit_regions("IO-AND-SiIV_new.reg")
+dataset.save_parameters("IO-AND-SiIV.fit")
+dataset.save_cont_parameters_to_file("IO-AND-SiIV.cont")
+dataset.save_fit_regions("IO-AND-SiIV.reg")
 
