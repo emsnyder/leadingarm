@@ -1,10 +1,11 @@
 ## SDSSJ015530.02-085704.0
 **Found good fits for the following ions:**
 
-Si II 1993 using 2 components:
+Si II 1260 using 3components:
 ```
 0 - MW
-1 - Stream (wide but can't get any more components to fit)
+1 - Stream
+2 - Stream
 ```
 
 Si III 1206 using 5 components:
