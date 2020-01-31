@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PKS1101-325-SII")
+dataset.set_name("PKS1101-325-SiIII")
 dataset.verbose = True
 
 
@@ -73,11 +73,11 @@ dataset.velspan = 800.0
 # dataset.add_line("SiII_1260")
 # dataset.add_line("SiII_1193")
 # dataset.add_line("SiII_1190")
-# dataset.add_line("SiIII_1206")
+dataset.add_line("SiIII_1206")
 # dataset.add_line("OI_1302")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
-dataset.add_line("SII_1253")
+# dataset.add_line("SII_1253")
 
 # NOTES ABOUT THE DETECTIONS:
 # log N(C II) is an upper limit. Line is blended.
@@ -92,21 +92,31 @@ dataset.add_line("SII_1253")
 # dataset.add_component_velocity("OI",  175.0, 20.0, 14.18, var_z=1, var_b=1, var_N=1)
 
 # SiII
-# dataset.add_component("SiII",  0., 50.0, 15.18, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  120.0, 35.0, 15.18, var_z=1, var_b=1, var_N=1)
-# dataset.add_component_velocity("SiII",  175.0, 20.0, 14.18, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SiII",  0., 50.0, 14.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  120.0, 30.0, 14.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  175.0, 35.0, 14.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SiII",  260.0, 20.0, 13.5, var_z=1, var_b=1, var_N=1)
 
 # SiIII
+dataset.add_component("SiIII",  0., 50.0, 14.5, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII",  120.0, 30.0, 14.1, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII",  175.0, 35.0, 14.1, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("SiIII",  260.0, 20.0, 13.5, var_z=1, var_b=1, var_N=1)
+
+
+# SiIV
 # dataset.add_component("SiIV",  0., 50.0, 13.18, var_z=1, var_b=1, var_N=1)
 # dataset.add_component("SiIV",  0., 50.0, 13.18, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  120.0, 35.0, 13.18, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  175.0, 20.0, 13.18, var_z=1, var_b=1, var_N=1)
 # dataset.add_component_velocity("SiIV",  -70.0, 35.0, 13.18, var_z=1, var_b=1, var_N=1)
 
+
+
 # SII
-dataset.add_component("SII",  0., 26.0, 15.18, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SII",  120.0, 20.0, 13.8, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("SII",  185.0, 20.0, 13.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component("SII",  0., 26.0, 15.18, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SII",  120.0, 20.0, 13.8, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("SII",  185.0, 20.0, 13.8, var_z=1, var_b=1, var_N=1)
 
 
 # -- Prepare the dataset: This will prompt the user for interactive
@@ -120,12 +130,12 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PKS1101-325-SII.pdf", max_rows=6)
+dataset.plot_fit(filename="PKS1101-325-SiIII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PKS1101-325-SII.fit")
-dataset.save_cont_parameters_to_file("PKS1101-325-SII.cont")
-dataset.save_fit_regions("PKS1101-325-SII.reg")
+dataset.save_parameters("PKS1101-325-SiIII.fit")
+dataset.save_cont_parameters_to_file("PKS1101-325-SiIII.cont")
+dataset.save_fit_regions("PKS1101-325-SiIII.reg")
 

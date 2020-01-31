@@ -8,11 +8,19 @@ O I 1302 using 3 components:
 1 - Leading Arm 1
 2 - Leading Arm 2
 ```
-Si II 1193 using 3 components:
+Si II 1190, 1193 using 4 components:
 ```
 0 - MW
-1 - Leading Arm 1
-2 - Leading Arm 2
+1 - Interloper
+2 - Interloper
+3 - Leading Arm
+```
+Si III 1206 using 4 components:
+```
+0 - MW
+1 - Interloper
+2 - Interloper
+3 - Leading Arm
 ```
 Si IV 1393, 1402 using 4 components:
 ```
@@ -29,3 +37,5 @@ S II 1253 uisng 3 components:
 ```
 
 **Other Notes:**
+
+Took out Si IV fit from analysis because it's very wonky.
