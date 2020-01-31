@@ -11,7 +11,7 @@ plt.rcParams['mathtext.rm'] = 'Arial'
 
 ROOTDIR = '/Users/efrazer/leadingarm/'
 OUTFOLDER = 'stackfigs'
-PICKLEFILE = '/Users/efrazer/leadingarm/fitdict_test.pickle'
+PICKLEFILE = '/Users/efrazer/leadingarm/fitdict.pickle'
 C = 299792.0  # km/s
 
 IONSTOUSE = {'ESO265-G23': ['SiII_1193', 'SiIII_1206', 'SiIV_1393'],
@@ -284,6 +284,8 @@ if __name__ == '__main__':
                 axes[1].text(340, 0.2, 'N')
                 axes[2].text(-50, 0.8, 'N')
                 axes[2].text(70, 1.05, 'N')
+            if sightline == 'PG2349-014':
+                axes[1].text(-177, 0.75, 'N')
 
             fig.subplots_adjust(top=1, bottom=0, right=1, left=0, hspace=0, wspace=0)
             plt.margins(0, 0)

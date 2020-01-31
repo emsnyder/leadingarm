@@ -238,7 +238,7 @@ def main():
         print(myfile)
         extract_fits(myfile, fitdict)
 
-    with open('fitdict_test.pickle', 'wb') as handle:
+    with open('fitdict.pickle', 'wb') as handle:
         pickle.dump(fitdict, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     # df = pd.DataFrame(popdict)
