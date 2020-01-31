@@ -4,6 +4,9 @@ import matplotlib.gridspec as gridspec
 import os
 import numpy as np
 
+rootdir = '/Users/efrazer/leadingarm/sightlines/'
+c = 299792.0  # km/s
+
 '''
 Stream
 ------
@@ -23,9 +26,6 @@ CD14-A05 - Si II and Si IV
 UVQSJ1016-3150 - Si II and Si III
 '''
 
-c = 299792.0  # km/s
-
-rootdir = '/Users/efrazer/leadingarm/sightlines/'
 
 sldict = {'UVQSJ101629.20-315023.6':
               {'ion_label': ['Si II 1193', 'Si III 1206'],
