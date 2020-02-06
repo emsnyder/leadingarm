@@ -128,6 +128,6 @@ for item in biglist:
         item.replace('_', '\\_')
     myfile.write(item + "\n")
 myfile.write("\\enddata\n")
-myfile.write("\\label{tab:align-stats}\n")
+myfile.write("\\label{tab:bigtable}\n")
 myfile.write("\\end{deluxetable*}\n")
 myfile.close()

@@ -6,7 +6,9 @@ import numpy as np
 from scipy import stats
 import pickle
 
-plt.rc('font',family='Arial')
+plt.rc('font', family='Arial')
+plt.rcParams['mathtext.fontset'] = 'custom'
+plt.rcParams['mathtext.rm'] = 'Arial'
 
 # ROOTDIR = '/Users/efrazer/leadingarm/sightlines/'
 OUTDIR = '/Users/efrazer/leadingarm/figures/'
@@ -75,6 +77,11 @@ nlist_ms_med = []
 nlist_la_hi = []
 nlist_ms_hi = []
 
+blist_la_cii = []
+blist_la_civ = []
+blist_ms_cii = []
+blist_ms_civ = []
+
 # collect the data
 for sightline in fitdict:
 
@@ -84,28 +91,6 @@ for sightline in fitdict:
     for dubion in ionlist:
 
         ion = dubion.split('_')[0]
-
-        # don't inluce C, O or S low ions
-        # if ion in ['OI', 'CII', 'SII']:
-        #
-        #     if fitdict[sightline][ion]['direction'] == 'MS-Off':
-        #
-        #         blist_ms_off_lo.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'MS-On':
-        #
-        #         blist_ms_on_lo.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'LA-Off':
-        #
-        #         blist_la_off_lo.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'LA-On':
-        #
-        #         blist_la_on_lo.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     else:
-        #         continue
 
         if ion in ['SiII']:
 
@@ -125,6 +110,29 @@ for sightline in fitdict:
 
                     blist_la_lo.append(bval)
                     nlist_la_lo.append(nval)
+
+                else:
+                    continue
+
+            else:
+                continue
+
+        elif ion in ['CII']:
+
+            if fitdict[sightline][ion]['direction'] == 'MS':
+
+                for bvalerr, bval, nval in zip(fitdict[sightline][ion]['components']['b value error'], fitdict[sightline][ion]['components']['b value'], fitdict[sightline][ion]['components']['column density']):
+
+                    blist_ms_cii.append(bval)
+
+                else:
+                    continue
+
+            elif fitdict[sightline][ion]['direction'] == 'LA':
+
+                for bvalerr, bval, nval in zip(fitdict[sightline][ion]['components']['b value error'], fitdict[sightline][ion]['components']['b value'], fitdict[sightline][ion]['components']['column density']):
+
+                    blist_la_cii.append(bval)
 
                 else:
                     continue
@@ -182,27 +190,28 @@ for sightline in fitdict:
             else:
                 continue
 
-        # don't inluce C ions
-        # elif ion in ['CIV']:
-        #
-        #     if fitdict[sightline][ion]['direction'] == 'MS-Off':
-        #
-        #         blist_ms_off_hi.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'MS-On':
-        #
-        #         blist_ms_on_hi.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'LA-Off':
-        #
-        #         blist_la_off_hi.extend(fitdict[sightline][ion]['components']['b value'])
-        #
-        #     elif fitdict[sightline][ion]['direction'] == 'LA-On':
-        #
-        #         blist_la_on_hi.extend(fitdict[sightline][ion]['components']['b value'])
+        elif ion in ['CIV']:
 
-            # else:
-            #     continue
+            if fitdict[sightline][ion]['direction'] == 'MS':
+
+                for bvalerr, bval, nval in zip(fitdict[sightline][ion]['components']['b value error'], fitdict[sightline][ion]['components']['b value'], fitdict[sightline][ion]['components']['column density']):
+
+                    blist_ms_civ.append(bval)
+
+                else:
+                    continue
+
+            elif fitdict[sightline][ion]['direction'] == 'LA':
+
+                for bvalerr, bval, nval in zip(fitdict[sightline][ion]['components']['b value error'], fitdict[sightline][ion]['components']['b value'], fitdict[sightline][ion]['components']['column density']):
+
+                    blist_la_civ.append(bval)
+
+                else:
+                    continue
+
+            else:
+                continue
 
         else:
             continue
@@ -230,7 +239,7 @@ n_la, bins_la, patches_la = plt.hist((blist_la_lo, blist_la_med, blist_la_hi),
                                             'Si III N={}'.format(len(blist_la_med)),
                                             'Si IV, N={}'.format(len(blist_la_hi))])
 
-plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
 plt.xticks(bins_la)
 plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
 plt.ylabel('relative number', fontsize=16)
@@ -276,7 +285,7 @@ n_ms, bins_ms, patches_ms = plt.hist((blist_ms_lo, blist_ms_med, blist_ms_hi),
                                             'Si III N={}'.format(len(blist_ms_med)),
                                             'Si IV, N={}'.format(len(blist_ms_hi))])
 
-plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
 plt.xticks(bins_ms)
 plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
 plt.ylabel('relative number', fontsize=16)
@@ -302,7 +311,7 @@ print('Si IV mean +/- std = {} +/- {}'.format(np.mean(blist_ms_hi), np.std(blist
 print(' ---------------------- ')
 
 #######################################################
-# b value Stream low vs LA low
+# b value Stream low vs LA low + carbon
 #######################################################
 
 fig = plt.figure(figsize=(8, 6))
@@ -310,7 +319,7 @@ ax = fig.add_subplot(111)
 ax.set_axisbelow(True)
 ax.yaxis.grid(color='lightgray', linestyle='dashed')
 ax.xaxis.grid(color='lightgray', linestyle='dashed')
-n_lo, bins_lo, patches_lo = plt.hist((blist_ms_lo, blist_la_lo),
+n_lo, bins_lo, patches_lo = plt.hist((blist_ms_lo + blist_ms_cii, blist_la_lo + blist_la_cii),
                                      bins=np.arange(0, 70, binwidth),
                                      color=['lime', 'darkviolet'],
                                      alpha=0.6,
@@ -318,11 +327,11 @@ n_lo, bins_lo, patches_lo = plt.hist((blist_ms_lo, blist_la_lo),
                                      align='mid',
                                      edgecolor='k',
                                      density=True,
-                                     label=['Si II in MS, N={}'.format(len(blist_ms_lo)),
-                                            'Si II in LA, N={}'.format(len(blist_la_lo))])
+                                     label=['Si II + C II in MS, N={}'.format(len(blist_ms_lo + blist_ms_cii)),
+                                            'Si II + C II in LA, N={}'.format(len(blist_la_lo + blist_la_cii))])
 
 
-plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
 plt.xticks(bins_lo)
 plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
 plt.ylabel('relative number', fontsize=16)
@@ -331,11 +340,11 @@ plt.title('Low Ion Components in the LA and MS', fontsize=20)
 plt.legend(prop={'size': 12})
 plt.setp(ax.get_xticklabels(), fontsize=14)
 plt.setp(ax.get_yticklabels(), fontsize=14)
-plt.savefig(os.path.join(OUTDIR, 'hist-b-LO.pdf'))
+plt.savefig(os.path.join(OUTDIR, 'hist-b-LO-C.pdf'))
 plt.close()
 
 # compute KS stats and print to screen for latex
-kstest_lo_b = stats.ks_2samp(blist_la_lo, blist_ms_lo)
+kstest_lo_b = stats.ks_2samp(blist_la_lo + blist_la_cii, blist_ms_lo + blist_ms_cii)
 print('Stream low vs LA low b-value stats')
 print('K-S Statistic D={:6.5f}, p-value={:6.5f}'.format(kstest_lo_b[0], kstest_lo_b[1]))
 print(' ---------------------- ')
@@ -349,7 +358,7 @@ ax = fig.add_subplot(111)
 ax.set_axisbelow(True)
 ax.yaxis.grid(color='lightgray', linestyle='dashed')
 ax.xaxis.grid(color='lightgray', linestyle='dashed')
-n_hi, bins_hi, patches_hi = plt.hist((blist_ms_hi, blist_la_hi),
+n_hi, bins_hi, patches_hi = plt.hist((blist_ms_hi + blist_ms_civ, blist_la_hi + blist_la_civ),
                                      bins=np.arange(0, 70, binwidth),
                                      color=['lime', 'darkviolet'],
                                      alpha=0.6,
@@ -357,10 +366,10 @@ n_hi, bins_hi, patches_hi = plt.hist((blist_ms_hi, blist_la_hi),
                                      align='mid',
                                      density=True,
                                      edgecolor='k',
-                                     label=['Si IV in MS, N={}'.format(len(blist_ms_hi)),
-                                            'Si IV in LA, N={}'.format(len(blist_la_hi))])
+                                     label=['Si IV + C IV in MS, N={}'.format(len(blist_ms_hi + blist_ms_civ)),
+                                            'Si IV + C IV in LA, N={}'.format(len(blist_la_hi + blist_la_civ))])
 
-plt.xlabel('b-value ' + r'$[km/s]$', fontsize=16)
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
 plt.xticks(bins_hi)
 plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
 plt.ylabel('relative number', fontsize=16)
@@ -369,11 +378,11 @@ plt.title('High Ion Components in the LA and MS', fontsize=20)
 plt.legend(prop={'size': 12})
 plt.setp(ax.get_xticklabels(), fontsize=14)
 plt.setp(ax.get_yticklabels(), fontsize=14)
-plt.savefig(os.path.join(OUTDIR, 'hist-b-HI.pdf'))
+plt.savefig(os.path.join(OUTDIR, 'hist-b-HI-C.pdf'))
 plt.close()
 
 # compute KS stats and print to screen for latex
-kstest_hi_b = stats.ks_2samp(blist_la_hi, blist_ms_hi)
+kstest_hi_b = stats.ks_2samp(blist_la_hi + blist_la_civ, blist_ms_hi + blist_ms_civ)
 print('Stream high vs LA high b-value stats')
 print('K-S Statistic D={:6.5f}, p-value={:6.5f}'.format(kstest_hi_b[0], kstest_hi_b[1]))
 print(' ---------------------- ')
@@ -472,3 +481,89 @@ print('Si III-IV K-S D={:6.5f}, p={:6.5f}'.format(kstest_ms_medhi[0], kstest_ms_
 print('Si II mean +/- std = {} +/- {}'.format(np.mean(nlist_ms_lo), np.std(nlist_ms_lo)))
 print('Si III mean +/- std = {} +/- {}'.format(np.mean(nlist_ms_med), np.std(nlist_ms_med)))
 print('Si IV mean +/- std = {} +/- {}'.format(np.mean(nlist_ms_hi), np.std(nlist_ms_hi)))
+print(' ---------------------- ')
+
+
+#######################################################
+# b value LA CII vs LA CIV
+#######################################################
+
+binwidth = 5.
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+ax.set_axisbelow(True)
+ax.yaxis.grid(color='lightgray', linestyle='dashed')
+ax.xaxis.grid(color='lightgray', linestyle='dashed')
+n_la_c, bins_la_c, patches_la_c = plt.hist((blist_la_cii, blist_la_civ),
+                                           bins=np.arange(0, 70, binwidth),
+                                           color=['orange', 'deepskyblue'],
+                                           rwidth=0.8,
+                                           align='mid',
+                                           edgecolor='k',
+                                           alpha=0.7,
+                                           density=True,
+                                           label=['C II, N={}'.format(len(blist_la_cii)),
+                                                  'C IV, N={}'.format(len(blist_la_civ))])
+
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
+plt.xticks(bins_la_c)
+plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
+plt.ylabel('relative number', fontsize=16)
+# plt.yticks(np.arange(np.max(n_la))+1)
+plt.title('Leading Arm Sightlines', fontsize=20)
+plt.legend(prop={'size': 12})
+plt.setp(ax.get_xticklabels(), fontsize=14)
+plt.setp(ax.get_yticklabels(), fontsize=14)
+plt.savefig(os.path.join(OUTDIR, 'hist-b-LA-C.pdf'))
+plt.close()
+
+# compute KS stats and print to screen for latex
+kstest_la_b_lohi_c = stats.ks_2samp(blist_la_cii, blist_la_civ)
+print('LA b-value stats -- CII + CIV')
+print('C II-IV K-S Statistic D={:6.5f}, p-value={:6.5f}'.format(kstest_la_b_lohi_c[0], kstest_la_b_lohi_c[1]))
+
+print('C II mean +/- std = {} +/- {}'.format(np.mean(blist_la_cii), np.std(blist_la_cii)))
+print('C IV mean +/- std = {} +/- {}'.format(np.mean(blist_la_civ), np.std(blist_la_civ)))
+print(' ---------------------- ')
+
+#######################################################
+# b value MS CII vs LA CIV
+#######################################################
+
+binwidth = 5.
+fig = plt.figure(figsize=(8, 6))
+ax = fig.add_subplot(111)
+ax.set_axisbelow(True)
+ax.yaxis.grid(color='lightgray', linestyle='dashed')
+ax.xaxis.grid(color='lightgray', linestyle='dashed')
+n_ms_c, bins_ms_c, patches_ms_c = plt.hist((blist_ms_cii, blist_ms_civ),
+                                           bins=np.arange(0, 70, binwidth),
+                                           color=['orange', 'deepskyblue'],
+                                           rwidth=0.8,
+                                           align='mid',
+                                           edgecolor='k',
+                                           alpha=0.7,
+                                           density=True,
+                                           label=['C II, N={}'.format(len(blist_ms_cii)),
+                                                  'C IV, N={}'.format(len(blist_ms_civ))])
+
+plt.xlabel('b-value (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
+plt.xticks(bins_ms_c)
+plt.axvline(10, color='black', linewidth=2, linestyle='dashed', alpha=0.7)
+plt.ylabel('relative number', fontsize=16)
+# plt.yticks(np.arange(np.max(n_la))+1)
+plt.title('Magellanic Stream Sightlines', fontsize=20)
+plt.legend(prop={'size': 12})
+plt.setp(ax.get_xticklabels(), fontsize=14)
+plt.setp(ax.get_yticklabels(), fontsize=14)
+plt.savefig(os.path.join(OUTDIR, 'hist-b-MS-C.pdf'))
+plt.close()
+
+# compute KS stats and print to screen for latex
+kstest_ms_b_lohi_c = stats.ks_2samp(blist_ms_cii, blist_ms_civ)
+print('MS b-value stats -- CII + CIV')
+print('C II-IV K-S Statistic D={:6.5f}, p-value={:6.5f}'.format(kstest_ms_b_lohi_c[0], kstest_ms_b_lohi_c[1]))
+
+print('C II mean +/- std = {} +/- {}'.format(np.mean(blist_ms_cii), np.std(blist_ms_cii)))
+print('C IV mean +/- std = {} +/- {}'.format(np.mean(blist_ms_civ), np.std(blist_ms_civ)))
+print(' ---------------------- ')

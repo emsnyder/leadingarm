@@ -6,6 +6,8 @@ import matplotlib.patheffects as pe
 import pickle
 
 plt.rc('font', family='Arial')
+plt.rcParams['mathtext.fontset'] = 'custom'
+plt.rcParams['mathtext.rm'] = 'Arial'
 
 ROOTDIR = '/Users/efrazer/leadingarm/sightlines/'
 OUTDIR = '/Users/efrazer/leadingarm/figures/'
@@ -140,7 +142,7 @@ def plotvelocities(direction, vellist1, vellist2, minbin, maxbin, xaxrange,
                                    label=['{}, N={}'.format(label1, len(vellist1)),
                                           '{}, N={}'.format(label2, len(vellist2))])
 
-    plt.xlabel('velocity offset ' + r'$[km/s]$', fontsize=16)
+    plt.xlabel('velocity offset (' + r'$\mathrm{km\>s^{-1}}$' + ')', fontsize=16)
     plt.xticks(bins)
     plt.ylabel('relative number', fontsize=16)
     # plt.yticks(np.arange(np.max(n_ms))+1)
