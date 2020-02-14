@@ -1,6 +1,12 @@
 ## RBS1897
 **Found good fits for the following ions:**
 
+Ni II 1370 using 1 component: 
+```
+0 - MW
+```
+
+
 Si II 1260
 ```
 0 - MW
