@@ -50,5 +50,12 @@ Si IV 1393, 1402 using 6 components:
 5 - Stream
 ```
 
+
+Ni II 1370 using 2 components:
+``` 
+0 - MW
+1 - stream/MW? ~-50km/s
+```
+
 **Other Notes:**
 

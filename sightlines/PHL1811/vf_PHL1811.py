@@ -9,7 +9,7 @@ matplotlib.use("GTKAgg")
 z = 0.0
 
 dataset = VoigtFit.DataSet(z)
-dataset.set_name("PHL1811-CII")
+dataset.set_name("PHL1811-NiII")
 dataset.verbose = True
 
 
@@ -81,7 +81,7 @@ dataset.velspan = 1000.0
 # SiII    1193.2897   4.991E-01
 # SiII    1190.4158   2.502E-01
 
-dataset.add_line("CII_1334")
+# dataset.add_line("CII_1334")
 # dataset.add_line("CIV_1548")
 # dataset.add_line("CIV_1550")
 # dataset.add_line("SiII_1260") # will be blended with 1259 Sulfur line
@@ -90,18 +90,27 @@ dataset.add_line("CII_1334")
 # dataset.add_line("SiIII_1206")
 # dataset.add_line("SiIV_1393")
 # dataset.add_line("SiIV_1402")
+dataset.add_line("NiII_1370")
 
 
 # -- Add the MS components
 #    The z is now an offset in velocity
 
-dataset.add_component_velocity("CII",  0, 40.0, 14.5, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CII",   -165, 50, 13.4, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CII",   -205, 70.0, 13.7, var_z=1, var_b=1, var_N=1)
-dataset.add_component_velocity("CII",   -260, 40.0, 13.5, var_z=1, var_b=1, var_N=1)
+# N II
+dataset.add_component_velocity("NiII",  0, 10.0, 13.2, var_z=1, var_b=1, var_N=1)
+dataset.add_component_velocity("NiII",   -50, 10, 13.1, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("NiII",   -200, 10, 13.1, var_z=1, var_b=1, var_N=1)
 
 
-# C II
+
+# C II new
+# dataset.add_component_velocity("CII",  0, 40.0, 14.5, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -165, 50, 13.4, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -205, 70.0, 13.7, var_z=1, var_b=1, var_N=1)
+# dataset.add_component_velocity("CII",   -260, 40.0, 13.5, var_z=1, var_b=1, var_N=1)
+
+
+# C II old
 # dataset.add_component("CII",  -0.000862,  17.35, 13.389, var_z=1, var_b=1, var_N=1)
 # dataset.add_component("CII",  -0.000690,  18.29, 14.088, var_z=1, var_b=1, var_N=1)
 # dataset.add_component("CII",  -0.000565,   9.78, 13.541, var_z=1, var_b=1, var_N=1)
@@ -155,11 +164,11 @@ dataset.prepare_dataset(norm=True, mask=True)
 # -- Fit the dataset:
 popt, chi2 = dataset.fit()
 
-dataset.plot_fit(filename="PHL1811-CII.pdf")
+dataset.plot_fit(filename="PHL1811-NiII.pdf")
 
 
 # -- Save the dataset to file: taken from the dataset.name
 dataset.save()
-dataset.save_parameters("PHL1811-CII.fit")
-dataset.save_cont_parameters_to_file("PHL1811-CII.cont")
-dataset.save_fit_regions("PHL1811-CII.reg")
+dataset.save_parameters("PHL1811-NiII.fit")
+dataset.save_cont_parameters_to_file("PHL1811-NiII.cont")
+dataset.save_fit_regions("PHL1811-NiII.reg")
